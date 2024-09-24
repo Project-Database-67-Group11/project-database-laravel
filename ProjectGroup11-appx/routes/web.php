@@ -25,4 +25,8 @@ Route::fallback(function () {
     return "<h1>wwwww</h1>";
 });
 
+Route::get('/namo', function () {
+    return view('namo');
+});
+
 require __DIR__.'/auth.php';
