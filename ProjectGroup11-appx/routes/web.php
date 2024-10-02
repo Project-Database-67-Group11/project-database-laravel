@@ -11,6 +11,11 @@ Route::get('/hello', function () {
     return "<h1>Welcome</h1>";
 });
 
+Route::get('/checkout', function () {
+    return view('checkout.checkout');
+})->name('checkout.checkout');
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
