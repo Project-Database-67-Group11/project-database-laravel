@@ -9,7 +9,6 @@ class Product extends Model
 {
     use HasFactory;
 
-    // กำหนดฟิลด์ที่สามารถเติมข้อมูลได้
     protected $fillable = [
         'product_id',
         'product_name',

@@ -45,6 +45,14 @@
                     </box>
                     <hr class="my-4 border-black border-t-2 rounded-full opacity-60">
                 </div>
+                <div class="flex justify-between">
+                    <h1 class="text-xl">Total</h1>
+                    <h1 class="text-xl">฿{{ number_format(10000, 2) }}</h1>
+                </div>
+                <div class="flex gap-2">
+                    <a href="/dashboard" class="bg-[#AF1515] px-2 py-1 text-center text-white rounded-lg w-1/2">Continue Shopping</a>
+                    <a href="/checkout" class="bg-[#15AF5C] px-2 py-2 text-center text-white rounded-lg w-1/2">Checkout</a>
+                </div>
             </div>
 
             {{-- ฝั่งขวา --}}
