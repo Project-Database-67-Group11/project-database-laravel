@@ -1,18 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cart</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;400&display=swap" rel="stylesheet">
-</head>
-
+@section('content')
 <body class="bg-[#E3E7F1] min-h-screen text-base pb-20">
-    <x-navbar />
-
     <div class="w-full flex justify-center items-center font-[Kanit]">
         <div class="mt-[4.375rem] w-[80%] grid grid-cols-3 gap-6">
             <div class="bg-[#ffffff] rounded-lg col-span-2 shadow-lg p-5 space-y-4">
@@ -81,5 +70,4 @@
     </div>
 
 </body>
-
-</html>
+@endsection
