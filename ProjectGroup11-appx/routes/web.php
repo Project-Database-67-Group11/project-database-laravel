@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -15,6 +16,9 @@ Route::get('/checkout', function () {
     return view('checkout.checkout');
 })->name('checkout.checkout');
 
+Route::get('/cart', function () {
+    return view('cart.cart');
+})->name('cart.cart');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -37,5 +41,8 @@ Route::fallback(function () {
 Route::get('/namo', function () {
     return view('namo');
 });
+
+// Add Product
+Route::get('/add-product', [ProductController::class, 'addProduct']);
 
 require __DIR__.'/auth.php';

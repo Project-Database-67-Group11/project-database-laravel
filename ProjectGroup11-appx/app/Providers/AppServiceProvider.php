@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,8 +18,10 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+
+    public function boot()
     {
-        //
+        Schema::defaultStringLength(191);  // ตัวอย่างการกำหนด default string length
+        Schema::disableForeignKeyConstraints();  // ปิดการตรวจสอบ foreign key
     }
 }
