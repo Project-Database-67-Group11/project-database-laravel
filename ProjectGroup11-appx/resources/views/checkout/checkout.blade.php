@@ -19,7 +19,7 @@
             <div class="bg-[#ffffff] rounded-lg col-span-2 shadow-lg p-5 space-y-4">
                 <header class="">
                     <h1 class="text-2xl font-semibold">Checkout</h1>
-                    <p class="text-lg font-medium">ที่อยู่ของฉัน</p>
+                    <p class="text-lg font-medium">My Address</p>
                 </header>
                 <div class="text-sm opacity-80">
                     <p>อภิวิชญ์ บุญฤทธิ์ | (+66) 97 125 6352</p>
