@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -44,5 +45,6 @@ Route::get('/namo', function () {
 
 // Add Product
 Route::get('/add-product', [ProductController::class, 'addProduct']);
+Route::get('/orders', [OrderController::class, 'index']);
 
 require __DIR__.'/auth.php';
