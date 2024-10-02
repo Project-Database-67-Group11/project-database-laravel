@@ -10,10 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;400&display=swap" rel="stylesheet">
 </head>
 
-<body class="bg-[#E3E7F1] font-[Kanit] min-h-screen text-base pb-20">
+<body class="bg-[#E3E7F1] min-h-screen text-base pb-20">
     <x-navbar />
 
-    <div class="w-full flex justify-center items-center">
+    <div class="w-full flex justify-center items-center font-[Kanit]">
         <div class="mt-[4.375rem] w-[80%] grid grid-cols-3 gap-6">
             <div class="bg-[#ffffff] rounded-lg col-span-2 shadow-lg p-5 space-y-4">
                 <header class="">
@@ -50,7 +50,7 @@
                     <h1 class="text-xl">฿{{ number_format(10000, 2) }}</h1>
                 </div>
                 <div class="flex gap-2">
-                    <a href="/dashboard" class="bg-[#AF1515] px-2 py-1 text-center text-white rounded-lg w-1/2">Continue Shopping</a>
+                    <a href="/dashboard" class="bg-[#AF1515] px-2 py-2 text-center text-white rounded-lg w-1/2">Continue Shopping</a>
                     <a href="/checkout" class="bg-[#15AF5C] px-2 py-2 text-center text-white rounded-lg w-1/2">Checkout</a>
                 </div>
             </div>

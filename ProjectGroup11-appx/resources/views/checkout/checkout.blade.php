@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;400&display=swap" rel="stylesheet">
 </head>
 
-<body class="bg-[#E3E7F1] font-[Kanit] min-h-screen text-base pb-20">
+<body class="bg-[#E3E7F1] min-h-screen pb-20 font-[Kanit]">
     <x-navbar />
 
     <div class="w-full flex justify-center items-center">

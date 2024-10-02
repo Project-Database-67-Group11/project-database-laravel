@@ -7,15 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;400&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div class="bg-[#ffffff] shadow-2xl flex justify-center items-center font-[Oswald] h-24 py-2">
+    <div class="bg-[#ffffff] shadow-2xl flex justify-center items-center font-[Kanit] h-24 py-2">
         {{-- logo --}}
         <div class="w-[80%] flex justify-between h-full">
             <div><a href="/"><img src="{{ asset('img/logo.png') }}" alt="Logo" class="h-full"></a></div>
-            <div class="flex items-center justify-center gap-4">
+            <div class="flex items-center justify-center space-x-4">
                 {{-- Cart --}}
                 <a href="/cart">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
