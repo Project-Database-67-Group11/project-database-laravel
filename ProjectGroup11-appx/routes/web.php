@@ -45,7 +45,14 @@ Route::get('/namo', function () {
 
 // Add Product
 Route::get('/add-product', [ProductController::class, 'addProduct']);
+
+// for Route Orders
 Route::get('/orders', [OrderController::class, 'index']);
+Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+Route::get('/orders/pending', [OrderController::class, 'pending'])->name('orders.pending');
+Route::get('/orders/completed', [OrderController::class, 'completed'])->name('orders.completed');
+Route::get('/orders/cancelled', [OrderController::class, 'cancelled'])->name('orders.cancelled');
+
 
 // show product
 Route::get('product/{id}', [ProductController::class, 'show']);
