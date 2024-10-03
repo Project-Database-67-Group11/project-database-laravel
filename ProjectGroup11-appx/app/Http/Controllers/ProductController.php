@@ -7,6 +7,7 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
+    // test
     public function addProduct()
     {
         Product::create([
@@ -22,5 +23,15 @@ class ProductController extends Controller
         ]);
 
         return 'Product added successfully!';
+    }
+
+    // แสดงจาก database
+    public function show($id)
+    {
+        // ดึงข้อมูลสินค้าจากฐานข้อมูลตาม product_id
+        $product = Product::where('product_id', $id)->firstOrFail();
+
+        // ส่งข้อมูลสินค้าไปยัง view ที่จะทำการแสดง
+        return view('product.show', compact('product'));
     }
 }

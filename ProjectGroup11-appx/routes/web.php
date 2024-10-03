@@ -47,4 +47,7 @@ Route::get('/namo', function () {
 Route::get('/add-product', [ProductController::class, 'addProduct']);
 Route::get('/orders', [OrderController::class, 'index']);
 
+// show product
+Route::get('product/{id}', [ProductController::class, 'show']);
+
 require __DIR__.'/auth.php';
