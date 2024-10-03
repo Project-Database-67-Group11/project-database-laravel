@@ -21,13 +21,13 @@ Route::get('/cart', function () {
     return view('cart.cart');
 })->name('cart.cart');
 
-Route::get('/dashboard', function () {
+Route::get('/store', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/store', function () {
-    return "<h1>Welcome to store</h1>";
-});
+// Route::get('/store', function () {
+//     return "<h1>Welcome to store</h1>";
+// });
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

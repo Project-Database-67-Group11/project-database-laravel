@@ -1,47 +1,70 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เข้าสู่ระบบ</title>
+    <!-- นำเข้า Tailwind CSS ผ่าน CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#E3E7F1] min-h-screen flex items-center justify-center">
+    <!-- Container -->
+    <div class="w-full max-w-md bg-white shadow-lg rounded-lg px-10 py-8">
+        <!-- Header -->
+        <h2 class="text-center text-2xl font-semibold mb-6">เข้าสู่ระบบ</h2>
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+        <!-- Session Status -->
+        @if (session('status'))
+            <div class="mb-4 font-medium text-sm text-green-600">
+                {{ session('status') }}
+            </div>
+        @endif
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+        <!-- Login Form -->
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            <!-- Email Address -->
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700 text-sm font-bold mb-2">อีเมล</label>
+                <input id="email" type="email" name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required autofocus>
+                @error('email')
+                    <span class="text-red-500 text-sm mt-2">{{ $message }}</span>
+                @enderror
+            </div>
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+            <!-- Password -->
+            <div class="mb-4">
+                <label for="password" class="block text-gray-700 text-sm font-bold mb-2">พาสเวิร์ด</label>
+                <input id="password" type="password" name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                @error('password')
+                    <span class="text-red-500 text-sm mt-2">{{ $message }}</span>
+                @enderror
+            </div>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+            <!-- Remember Me -->
+            <div class="flex items-center justify-between mb-4">
+                <label class="flex items-center">
+                    <input type="checkbox" name="remember" class="mr-2 leading-tight">
+                    <span class="text-sm text-gray-600">จดจำฉัน</span>
+                </label>
+                @if (Route::has('password.request'))
+                    <a href="{{ route('password.request') }}" class="text-sm text-orange-500 hover:text-orange-700">ลืมรหัสผ่าน?</a>
+                @endif
+            </div>
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
+            <!-- Login Button -->
+            <div class="flex justify-center mb-4">
+                <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline">
+                    เข้าสู่ระบบ
+                </button>
+            </div>
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+            <!-- Register Link -->
+            <div class="text-center text-sm text-gray-600">
+                เพิ่งเคยเข้าครั้งแรกใช่หรือไม่? <a href="{{ route('register') }}" class="text-orange-500 hover:text-orange-700">สมัครใหม่</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
