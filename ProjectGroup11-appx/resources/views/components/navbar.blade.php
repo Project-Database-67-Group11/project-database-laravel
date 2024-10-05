@@ -14,7 +14,7 @@
     <div class="bg-[#ffffff] shadow-2xl flex justify-center items-center font-[Kanit] h-24 py-2">
         {{-- logo --}}
         <div class="w-[80%] flex justify-between h-full">
-            <div><a href="/"><img src="{{ asset('img/logo.png') }}" alt="Logo" class="h-full"></a></div>
+            <div><a href="/store"><img src="{{ asset('img/logo.png') }}" alt="Logo" class="h-full"></a></div>
             <div class="flex items-center justify-center space-x-4">
                 {{-- Cart --}}
                 @if (Auth::check())

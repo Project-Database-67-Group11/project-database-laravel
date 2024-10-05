@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class UserInformation extends Model
 {
     use HasFactory;
-    
+
+    // ระบุชื่อตารางที่ถูกต้อง
+    protected $table = 'users_information';
+
     protected $fillable = [
-        'user_information_id',
         'first_name',
         'last_name',
         'phone_number',

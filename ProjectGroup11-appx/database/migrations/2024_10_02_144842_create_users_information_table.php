@@ -12,14 +12,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users_information', function (Blueprint $table) {
-            $table->id('user_information_id');  // Primary key
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('phone_number');
-            $table->text('address');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');  // Foreign key referencing users table
+            $table->id('user_information_id');
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->text('address')->nullable();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
-        });
+        });        
     }
 
     /**

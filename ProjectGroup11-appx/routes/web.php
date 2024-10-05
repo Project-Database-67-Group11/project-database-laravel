@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
@@ -17,9 +18,9 @@ Route::get('/checkout', function () {
     return view('checkout.checkout');
 })->name('checkout.checkout');
 
-Route::get('/cart', function () {
-    return view('cart.cart');
-})->name('cart.cart');
+// Route::get('/cart', function () {
+//     return view('cart.cart');
+// })->name('cart.cart');
 
 Route::get('/store', function () {
     return view('dashboard');
@@ -56,5 +57,11 @@ Route::get('/orders/cancelled', [OrderController::class, 'cancelled'])->name('or
 
 // show product
 Route::get('product/{id}', [ProductController::class, 'show']);
+
+// post in cart
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add')->middleware('auth');
+
+// show cart
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
 require __DIR__.'/auth.php';

@@ -11,13 +11,13 @@ class ProductController extends Controller
     public function addProduct()
     {
         Product::create([
-            'product_id' => 1,
-            'product_name' => 'MY WHEY PROTEIN',
-            'product_description' => 'เหมาะกับใคร? ต้องการสร้างกล้ามเนื้อ, เร่งการฟื้นฟูกล้ามเนื้อ, อยากได้เวย์ที่ราคาถูก และคุณภาพดี,นักกีฬา',
-            'product_img' => 'https://bucket.fitwhey.com/ProductType/b76f455d70bcdd92ab1d90cdb83843a2.webp',
-            'product_price' => 10000,
-            'product_quantity' => 512,
-            'product_type' => 'Protein',
+            'product_id' => 2,
+            'product_name' => 'BAAM CREATINE MAX ATP 5000',
+            'product_description' => 'เหมาะกับใคร? ต้องการสร้างความแข็งแรงของกล้ามเนื้อ, เพิ่มผลลัพธ์จากการทานโปรตีน/เวย์ เพียงอย่างเดียว',
+            'product_img' => 'https://bucket.fitwhey.com/products/6b06d5e9eb360935e56fd050cab6573f.webp',
+            'product_price' => 375,
+            'product_quantity' => 87,
+            'product_type' => 'Creatine',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -25,7 +25,7 @@ class ProductController extends Controller
         return 'Product added successfully!';
     }
 
-    // แสดงจาก database
+    // แสดงจาก product ของแต่ละ id ใน database
     public function show($id)
     {
         // ดึงข้อมูลสินค้าจากฐานข้อมูลตาม product_id

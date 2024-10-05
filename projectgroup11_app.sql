@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2024 at 11:01 AM
+-- Generation Time: Oct 05, 2024 at 03:54 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -59,6 +59,15 @@ CREATE TABLE `carts` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `carts`
+--
+
+INSERT INTO `carts` (`cart_id`, `product_id`, `user_information_id`, `quantity`, `created_at`, `updated_at`) VALUES
+(8, 1, 1, 2, '2024-10-05 08:42:53', '2024-10-05 08:42:53'),
+(9, 1, 1, 4, '2024-10-05 08:42:56', '2024-10-05 08:42:56'),
+(10, 2, 1, 6, '2024-10-05 08:43:03', '2024-10-05 08:43:03');
 
 -- --------------------------------------------------------
 
@@ -128,14 +137,14 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '0001_01_01_000000_create_users_table', 1),
-(2, '0001_01_01_000001_create_cache_table', 1),
-(3, '0001_01_01_000002_create_jobs_table', 1),
-(4, '2024_10_02_144842_create_users_information_table', 1),
-(5, '2024_10_02_144850_create_products_table', 1),
-(6, '2024_10_02_144855_create_carts_table', 1),
-(7, '2024_10_02_144859_create_orders_table', 1),
-(8, '2024_10_02_144903_create_reviews_table', 1);
+(25, '0001_01_01_000000_create_users_table', 1),
+(26, '0001_01_01_000001_create_cache_table', 1),
+(27, '0001_01_01_000002_create_jobs_table', 1),
+(28, '2024_10_02_144842_create_users_information_table', 1),
+(29, '2024_10_02_144850_create_products_table', 1),
+(30, '2024_10_02_144855_create_carts_table', 1),
+(31, '2024_10_02_144859_create_orders_table', 1),
+(32, '2024_10_02_144903_create_reviews_table', 1);
 
 -- --------------------------------------------------------
 
@@ -152,9 +161,9 @@ CREATE TABLE `orders` (
   `total_price` decimal(10,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `status` enum('pending','completed','cancelled') COLLATE utf8mb4_unicode_ci DEFAULT 'pending',
   `payment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `shipping` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` enum('pending','completed','cancelled') COLLATE utf8mb4_unicode_ci DEFAULT 'pending'
+  `shipping` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -192,7 +201,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_name`, `product_description`, `product_img`, `product_price`, `product_quantity`, `product_type`, `created_at`, `updated_at`) VALUES
-(1, 'MY WHEY PROTEIN', 'เหมาะกับใคร? ต้องการสร้างกล้ามเนื้อ, เร่งการฟื้นฟูกล้ามเนื้อ, อยากได้เวย์ที่ราคาถูก และคุณภาพดี,นักกีฬา', 'https://bucket.fitwhey.com/ProductType/b76f455d70bcdd92ab1d90cdb83843a2.webp', 10000.00, 512, 'Protein', '2024-10-02 08:01:56', '2024-10-02 08:01:56');
+(1, 'MY WHEY PROTEIN', 'เหมาะกับใคร? ต้องการสร้างกล้ามเนื้อ, เร่งการฟื้นฟูกล้ามเนื้อ, อยากได้เวย์ที่ราคาถูก และคุณภาพดี,นักกีฬา', 'https://bucket.fitwhey.com/ProductType/b76f455d70bcdd92ab1d90cdb83843a2.webp', 10000.00, 512, 'Protein', '2024-10-05 08:20:49', '2024-10-05 08:20:49'),
+(2, 'BAAM CREATINE MAX ATP 5000', 'เหมาะกับใคร? ต้องการสร้างความแข็งแรงของกล้ามเนื้อ, เพิ่มผลลัพธ์จากการทานโปรตีน/เวย์ เพียงอย่างเดียว', 'https://bucket.fitwhey.com/products/6b06d5e9eb360935e56fd050cab6573f.webp', 375.00, 87, 'Creatine', '2024-10-05 08:25:53', '2024-10-05 08:25:53');
 
 -- --------------------------------------------------------
 
@@ -229,9 +239,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('GzLsYEgVcu0otoEB7tzy8gm1RmjYNqtY3d0pmL1C', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiTWFEdU5xVlpvZDFTS1JLMmZVekxLdmRwZFF6c3NzTG9PdHl5RHVMbCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzA6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jaGVja291dCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1727887993),
-('OUNkIKenbNyZJiUvGEjGTgxt5FuO5tmXZUchnFLI', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiUnA3dWxVWTVjRTJuT0dneHBxZXJHeEpiOUVYY3J6dk54dEUxd1ZYUSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1727950567),
-('QC8aGWy4iRbEKVxfQMWB8PYuYZfU9XqwWIeFbXyW', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiZXJIdU9pVER0QnllSlE0UnlCdTd3SnlSY2VtdWtVNkRLeDhRc1ZGeSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jYXJ0Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MDp7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1727950665);
+('5eRNpzZLKqqZ2UKeJ5RzlRi7qucJ8Ro1JWjqUp1M', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiSG5ad2xPNnNBR0M0M1RTRFhmYk16UE9taGtKV0RCYjJwd3JtVmpTbiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9zdG9yZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjE6e3M6ODoiaW50ZW5kZWQiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9zdG9yZSI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjI7fQ==', 1728141575),
+('QbGYeq9THpVwtAh085lbHF8JkZSzGoYzcLKZOJ4S', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoidmJWQWdKdmFkcERvdjBTYmFsZEtXN3VvME1xUTZHTlVpZ1VmT0NFYyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzA6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jaGVja291dCI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1728142993);
 
 -- --------------------------------------------------------
 
@@ -255,7 +264,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'autsadawiriya', 'autsada@test.com', NULL, '$2y$12$TziaLr1hWRVVl7.jaDc5heoh3Ic2eUlVH5/wSY/KvN4YbdNlujSpO', 'G0a8yI3Gl2SvVQSQH82BKaUhayavsRy9zQNd7QlcuMCbJtzGeHXyp1t6nF9N', '2024-10-02 07:53:09', '2024-10-02 07:53:09');
+(1, 'autsada', 'autsada@test.com', NULL, '$2y$12$XbY1qtLwq2cQ.vikQGjPpugNvaeY3zQYkVG7RZ6uNY9q.bwZ0RnS.', NULL, '2024-10-05 08:17:55', '2024-10-05 08:17:55'),
+(2, 'test1', 'test1@test.com', NULL, '$2y$12$aY.LouskHeiaYmlHn7o1M.on4UPy4fEDqC6G9rN.2aBc6vBemXzrS', NULL, '2024-10-05 08:19:34', '2024-10-05 08:19:34');
 
 -- --------------------------------------------------------
 
@@ -265,14 +275,22 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 
 CREATE TABLE `users_information` (
   `user_information_id` bigint UNSIGNED NOT NULL,
-  `first_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone_number` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `first_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone_number` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci,
   `user_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users_information`
+--
+
+INSERT INTO `users_information` (`user_information_id`, `first_name`, `last_name`, `phone_number`, `address`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, '', '', '', '', 1, '2024-10-05 08:17:55', '2024-10-05 08:17:55'),
+(2, '', '', '', '', 2, '2024-10-05 08:19:34', '2024-10-05 08:19:34');
 
 --
 -- Indexes for dumped tables
@@ -382,7 +400,7 @@ ALTER TABLE `users_information`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `cart_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `cart_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -400,7 +418,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -412,7 +430,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `product_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `reviews`
@@ -424,13 +442,13 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users_information`
 --
 ALTER TABLE `users_information`
-  MODIFY `user_information_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `user_information_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

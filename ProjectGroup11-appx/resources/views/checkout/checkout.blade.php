@@ -106,7 +106,7 @@
                     </div>
                 </div>
 
-                <a href="/dashboard" class="rounded-lg shadow-lg bg-[#15AF5C] text-[#ffffff] text-center py-2">Place
+                <a href="/store" class="rounded-lg shadow-lg bg-[#15AF5C] text-[#ffffff] text-center py-2">Place
                     Order</a>
             </div>
         </div>
