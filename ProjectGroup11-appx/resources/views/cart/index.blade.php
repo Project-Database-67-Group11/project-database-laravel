@@ -21,24 +21,31 @@
                                             <div class="flex">
                                                 <div class="flex items-center">
                                                     <!-- ฟอร์มลดจำนวนสินค้า -->
-                                                    <form action="{{ route('cart.update', ['product_id' => $item->product_id]) }}" method="POST">
+                                                    <form
+                                                        action="{{ route('cart.update', ['product_id' => $item->product_id]) }}"
+                                                        method="POST">
                                                         @csrf
                                                         <input type="hidden" name="action" value="decrease">
-                                                        <button type="submit" class="decrease border border-black w-6 h-6 flex items-center justify-center">-</button>
+                                                        <button type="submit"
+                                                            class="decrease border border-black w-6 h-6 flex items-center justify-center">-</button>
                                                     </form>
-                                                
+
                                                     <!-- แสดงจำนวนสินค้า -->
-                                                    <p id="quantity_{{ $item->product_id }}" class="border border-black w-9 h-6 flex items-center justify-center">
+                                                    <p id="quantity_{{ $item->product_id }}"
+                                                        class="border border-black w-9 h-6 flex items-center justify-center">
                                                         {{ $item->total_quantity }}
                                                     </p>
-                                                
+
                                                     <!-- ฟอร์มเพิ่มจำนวนสินค้า -->
-                                                    <form action="{{ route('cart.update', ['product_id' => $item->product_id]) }}" method="POST">
+                                                    <form
+                                                        action="{{ route('cart.update', ['product_id' => $item->product_id]) }}"
+                                                        method="POST">
                                                         @csrf
                                                         <input type="hidden" name="action" value="increase">
-                                                        <button type="submit" class="increase border border-black w-6 h-6 flex items-center justify-center">+</button>
+                                                        <button type="submit"
+                                                            class="increase border border-black w-6 h-6 flex items-center justify-center">+</button>
                                                     </form>
-                                                </div>                                                
+                                                </div>
                                             </div>
                                         </div>
                                         <p class="text-xl font-bold">
@@ -71,8 +78,13 @@
                     <div class="flex gap-2">
                         <a href="/store" class="bg-[#AF1515] px-2 py-2 text-center text-white rounded-lg w-1/2">Continue
                             Shopping</a>
-                        <a href="/checkout"
-                            class="bg-[#15AF5C] px-2 py-2 text-center text-white rounded-lg w-1/2">Checkout</a>
+                        @if ($cartItems->isEmpty())
+                            <button class="bg-gray-400 px-2 py-2 text-center text-white rounded-lg w-1/2 cursor-not-allowed"
+                                disabled>Checkout</button>
+                        @else
+                            <a href="/checkout"
+                                class="bg-[#15AF5C] px-2 py-2 text-center text-white rounded-lg w-1/2">Checkout</a>
+                        @endif
                     </div>
                 </div>
 

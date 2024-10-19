@@ -58,14 +58,14 @@ Route::get('/orders/cancelled', [OrderController::class, 'cancelled'])->name('or
 // show product
 Route::get('product/{id}', [ProductController::class, 'show']);
 
-
-// show cart
+// Cart
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-
-// post in cart
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add')->middleware('auth');
 Route::delete('/cart/removed', [CartController::class, 'removed'])->name('cart.removed');
 Route::post('/cart/update/{product_id}', [CartController::class, 'update'])->name('cart.update');
+
+// CheckOut
+Route::post('/place-order', [OrderController::class, 'placeOrder'])->name('cart.placeOrder');
 
 Route::get('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 require __DIR__.'/auth.php';
