@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 19, 2024 at 09:20 AM
+-- Generation Time: Oct 19, 2024 at 01:28 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -71,20 +71,6 @@ CREATE TABLE `carts` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `carts`
---
-
-INSERT INTO `carts` (`cart_id`, `product_id`, `user_information_id`, `quantity`, `created_at`, `updated_at`) VALUES
-(8, 1, 1, 2, '2024-10-05 08:42:53', '2024-10-05 08:42:53'),
-(9, 1, 1, 4, '2024-10-05 08:42:56', '2024-10-05 08:42:56'),
-(10, 2, 1, 6, '2024-10-05 08:43:03', '2024-10-05 08:43:03'),
-(11, 1, 3, 7, '2024-10-05 09:54:21', '2024-10-05 09:54:21'),
-(12, 2, 3, 1, '2024-10-05 09:54:56', '2024-10-05 09:54:56'),
-(13, 2, 3, 1, '2024-10-05 09:55:03', '2024-10-05 09:55:03'),
-(14, 1, 3, 1, '2024-10-07 02:33:37', '2024-10-07 02:33:37'),
-(15, 1, 3, 512, '2024-10-07 02:33:48', '2024-10-07 02:33:48');
 
 -- --------------------------------------------------------
 
@@ -180,8 +166,20 @@ CREATE TABLE `orders` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `status` enum('pending','completed','cancelled') COLLATE utf8mb4_unicode_ci DEFAULT 'pending',
   `payment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `shipping` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `shipping` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `all_order_id` bigint UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `product_id`, `user_information_id`, `date`, `quantity`, `total_price`, `created_at`, `updated_at`, `status`, `payment`, `shipping`, `all_order_id`) VALUES
+(6, 6, 1, '2024-10-19', 1, 3651.78, '2024-10-19 06:11:04', '2024-10-19 06:11:04', 'pending', 'cash', 'fast', 1),
+(7, 10, 1, '2024-10-19', 2, 3651.78, '2024-10-19 06:11:04', '2024-10-19 06:11:04', 'pending', 'cash', 'fast', 1),
+(8, 3, 1, '2024-10-19', 1, 1353.43, '2024-10-19 06:13:27', '2024-10-19 06:13:27', 'pending', 'cash', 'fast', 2),
+(9, 16, 1, '2024-10-19', 4, 1353.43, '2024-10-19 06:13:27', '2024-10-19 06:13:27', 'pending', 'cash', 'fast', 2),
+(10, 3, 1, '2024-10-19', 1, 320.83, '2024-10-19 06:17:53', '2024-10-19 06:17:53', 'pending', 'card', 'normal', 3);
 
 -- --------------------------------------------------------
 
@@ -218,7 +216,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_name`, `product_description`, `product_img`, `product_price`, `product_quantity`, `product_type`, `created_at`, `updated_at`) VALUES
-(1, 'MY WHEY PROTEIN', 'เหมาะกับใคร? ต้องการสร้างกล้ามเนื้อ, เร่งการฟื้นฟูกล้ามเนื้อ, อยากได้เวย์ที่ราคาถูก และคุณภาพดี,นักกีฬา', 'https://bucket.fitwhey.com/ProductType/b76f455d70bcdd92ab1d90cdb83843a2.webp', 10000.00, 512, 'Protein', '2024-10-05 08:20:49', '2024-10-05 08:20:49'),
+(1, 'MY WHEY PROTEIN', 'เหมาะกับใคร? ต้องการสร้างกล้ามเนื้อ, เร่งการฟื้นฟูกล้ามเนื้อ, อยากได้เวย์ที่ราคาถูก และคุณภาพดี,นักกีฬา', 'https://bucket.fitwhey.com/ProductType/b76f455d70bcdd92ab1d90cdb83843a2.webp', 1495.00, 512, 'Protein', '2024-10-05 08:20:49', '2024-10-05 08:20:49'),
 (2, 'BAAM CREATINE MAX ATP 5000', 'เหมาะกับใคร? ต้องการสร้างความแข็งแรงของกล้ามเนื้อ, เพิ่มผลลัพธ์จากการทานโปรตีน/เวย์ เพียงอย่างเดียว', 'https://bucket.fitwhey.com/products/6b06d5e9eb360935e56fd050cab6573f.webp', 375.00, 87, 'Creatine', '2024-10-05 08:25:53', '2024-10-05 08:25:53'),
 (3, 'Vitamin D3 5000iu', 'วิตามินอีกหนึ่งตัวที่คนส่วนใหญ่ได้รับไม่เพียงพอ โดยเฉพาะ คนเมือง ที่อยู่แต่ในรถ ในตึก มีโอกาสโดนแดดช่วงเช่าๆน้อยมาก แถมแดดช่วงอื่นก็สู้ไม่ไหว การเสริมด้วยการกิน จึงช่วยได้มาก และยังเป็นวิตามิน ที่สำคัญมากๆ ตัวหนึ่งของสายกล้าม', 'https://bucket.fitwhey.com/products/2de182656e7208c79fd4f8b706e204ca.webp', 299.00, 456, 'Vitamin', '2024-10-07 02:44:00', '2024-10-07 02:44:00'),
 (4, 'ISO ABSOLUTE ZERO', 'เหมาะกับใคร ?\nต้องการสร้างกล้ามเนื้อ แบบคุมไขมัน, เร่งการฟื้นฟูกล้ามเนื้อ, อยากได้เวย์คุณภาพสูง, คนที่แพ้แลคโตสในนม, นักกีฬา, ผู้สูงอายุ', 'https://bucket.fitwhey.com/ProductType/26e75a452d8d4cad245b03203fc8e145.webp', 2295.00, 123, 'Protein', '2024-10-19 02:17:19', '2024-10-19 02:17:19'),
@@ -274,8 +272,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('AY84adNLZcWCoHMir96VNih8bNR9USMSZr7pmDCq', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiaG1sbmdYWE91UGxFMk1FcDJKSW5GcTRWWGZnYzJ0dlY4TUN3amFGdiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jYXJ0Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mzt9', 1728294341),
-('fH5NQqHiP0yoIIdjlkW2goqNweiCOaOQSNH2Xuyn', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoibkdiQ0N5azJzSVFWbE9SODdhR2RRaGhPd0x3UklSY2xSNmhaTk9hYiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jYXJ0Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MDp7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1729329548);
+('fH5NQqHiP0yoIIdjlkW2goqNweiCOaOQSNH2Xuyn', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoibkdiQ0N5azJzSVFWbE9SODdhR2RRaGhPd0x3UklSY2xSNmhaTk9hYiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjg6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9vcmRlcnMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjM6InVybCI7YTowOnt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1729343873);
 
 -- --------------------------------------------------------
 
@@ -325,7 +322,7 @@ CREATE TABLE `users_information` (
 --
 
 INSERT INTO `users_information` (`user_information_id`, `first_name`, `last_name`, `phone_number`, `address`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, '', '', '', '', 1, '2024-10-05 08:17:55', '2024-10-05 08:17:55'),
+(1, 'Autsada', 'Wiriya', '0999999999', '123/1 m.1 t.cmu a.cmu p.cmu', 1, '2024-10-05 08:17:55', '2024-10-05 08:17:55'),
 (2, '', '', '', '', 2, '2024-10-05 08:19:34', '2024-10-05 08:19:34'),
 (3, '', '', '', '', 3, '2024-10-05 09:53:55', '2024-10-05 09:53:55');
 
@@ -437,7 +434,7 @@ ALTER TABLE `users_information`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `cart_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `cart_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -461,7 +458,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `products`
