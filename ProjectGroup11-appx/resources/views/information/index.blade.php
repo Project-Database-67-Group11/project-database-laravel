@@ -52,6 +52,7 @@
 
             <div class="bg-white shadow-md col-span-3 rounded-xl p-10 space-y-10">
                 {{-- add --}}
+                
             </div>
         </div>
     @endsection

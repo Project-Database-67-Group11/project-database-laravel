@@ -29,7 +29,7 @@
                 {{-- Profile --}}
                 <div class="flex">
                     @if (Auth::check())
-                        <a href="/information" class="flex justify-center items-center gap-2">
+                        <a href="/profile" class="flex justify-center items-center gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
                                 viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                                 <path
