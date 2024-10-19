@@ -14,7 +14,7 @@
         <h2 class="text-center text-2xl font-semibold mb-6">สมัครใหม่</h2>
 
         <!-- Validation Errors -->
-        @if ($errors->any())
+        {{-- @if ($errors->any())
             <div class="mb-4">
                 <ul class="text-red-500 text-sm">
                     @foreach ($errors->all() as $error)
@@ -22,7 +22,7 @@
                     @endforeach
                 </ul>
             </div>
-        @endif
+        @endif --}}
 
         <!-- Registration Form -->
         <form method="POST" action="{{ route('register') }}">

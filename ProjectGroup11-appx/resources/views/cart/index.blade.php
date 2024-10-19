@@ -22,7 +22,7 @@
                                                 <button type="button" id="decrease_{{ $item->id }}"
                                                     class="border border-spacing-1 border-black aspect-square text-center">-</button>
                                                 <p id="quantity_{{ $item->id }}"
-                                                    class="border border-spacing-1 border-black aspect-square text-center">
+                                                    class="border border-spacing-1 border-black px-2 text-center">
                                                     {{ $item->total_quantity }}</p>
                                                 <button type="button" id="increase_{{ $item->id }}"
                                                     class="border border-spacing-1 border-black aspect-square text-center">+</button>

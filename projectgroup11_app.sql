@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2024 at 03:54 PM
+-- Generation Time: Oct 19, 2024 at 09:20 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -32,6 +32,18 @@ CREATE TABLE `cache` (
   `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `expiration` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `cache`
+--
+
+INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
+('1234@g.c|127.0.0.1', 'i:1;', 1728293612),
+('1234@g.c|127.0.0.1:timer', 'i:1728293612;', 1728293612),
+('1234@gmail.com|127.0.0.1', 'i:1;', 1728147118),
+('1234@gmail.com|127.0.0.1:timer', 'i:1728147118;', 1728147118),
+('1234@test.com|127.0.0.1', 'i:1;', 1728293626),
+('1234@test.com|127.0.0.1:timer', 'i:1728293626;', 1728293626);
 
 -- --------------------------------------------------------
 
@@ -67,7 +79,12 @@ CREATE TABLE `carts` (
 INSERT INTO `carts` (`cart_id`, `product_id`, `user_information_id`, `quantity`, `created_at`, `updated_at`) VALUES
 (8, 1, 1, 2, '2024-10-05 08:42:53', '2024-10-05 08:42:53'),
 (9, 1, 1, 4, '2024-10-05 08:42:56', '2024-10-05 08:42:56'),
-(10, 2, 1, 6, '2024-10-05 08:43:03', '2024-10-05 08:43:03');
+(10, 2, 1, 6, '2024-10-05 08:43:03', '2024-10-05 08:43:03'),
+(11, 1, 3, 7, '2024-10-05 09:54:21', '2024-10-05 09:54:21'),
+(12, 2, 3, 1, '2024-10-05 09:54:56', '2024-10-05 09:54:56'),
+(13, 2, 3, 1, '2024-10-05 09:55:03', '2024-10-05 09:55:03'),
+(14, 1, 3, 1, '2024-10-07 02:33:37', '2024-10-07 02:33:37'),
+(15, 1, 3, 512, '2024-10-07 02:33:48', '2024-10-07 02:33:48');
 
 -- --------------------------------------------------------
 
@@ -202,7 +219,25 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`product_id`, `product_name`, `product_description`, `product_img`, `product_price`, `product_quantity`, `product_type`, `created_at`, `updated_at`) VALUES
 (1, 'MY WHEY PROTEIN', 'เหมาะกับใคร? ต้องการสร้างกล้ามเนื้อ, เร่งการฟื้นฟูกล้ามเนื้อ, อยากได้เวย์ที่ราคาถูก และคุณภาพดี,นักกีฬา', 'https://bucket.fitwhey.com/ProductType/b76f455d70bcdd92ab1d90cdb83843a2.webp', 10000.00, 512, 'Protein', '2024-10-05 08:20:49', '2024-10-05 08:20:49'),
-(2, 'BAAM CREATINE MAX ATP 5000', 'เหมาะกับใคร? ต้องการสร้างความแข็งแรงของกล้ามเนื้อ, เพิ่มผลลัพธ์จากการทานโปรตีน/เวย์ เพียงอย่างเดียว', 'https://bucket.fitwhey.com/products/6b06d5e9eb360935e56fd050cab6573f.webp', 375.00, 87, 'Creatine', '2024-10-05 08:25:53', '2024-10-05 08:25:53');
+(2, 'BAAM CREATINE MAX ATP 5000', 'เหมาะกับใคร? ต้องการสร้างความแข็งแรงของกล้ามเนื้อ, เพิ่มผลลัพธ์จากการทานโปรตีน/เวย์ เพียงอย่างเดียว', 'https://bucket.fitwhey.com/products/6b06d5e9eb360935e56fd050cab6573f.webp', 375.00, 87, 'Creatine', '2024-10-05 08:25:53', '2024-10-05 08:25:53'),
+(3, 'Vitamin D3 5000iu', 'วิตามินอีกหนึ่งตัวที่คนส่วนใหญ่ได้รับไม่เพียงพอ โดยเฉพาะ คนเมือง ที่อยู่แต่ในรถ ในตึก มีโอกาสโดนแดดช่วงเช่าๆน้อยมาก แถมแดดช่วงอื่นก็สู้ไม่ไหว การเสริมด้วยการกิน จึงช่วยได้มาก และยังเป็นวิตามิน ที่สำคัญมากๆ ตัวหนึ่งของสายกล้าม', 'https://bucket.fitwhey.com/products/2de182656e7208c79fd4f8b706e204ca.webp', 299.00, 456, 'Vitamin', '2024-10-07 02:44:00', '2024-10-07 02:44:00'),
+(4, 'ISO ABSOLUTE ZERO', 'เหมาะกับใคร ?\nต้องการสร้างกล้ามเนื้อ แบบคุมไขมัน, เร่งการฟื้นฟูกล้ามเนื้อ, อยากได้เวย์คุณภาพสูง, คนที่แพ้แลคโตสในนม, นักกีฬา, ผู้สูงอายุ', 'https://bucket.fitwhey.com/ProductType/26e75a452d8d4cad245b03203fc8e145.webp', 2295.00, 123, 'Protein', '2024-10-19 02:17:19', '2024-10-19 02:17:19'),
+(5, 'FITSOY 100% SOY ISOLATE', 'FIT SOY 100% SOY ISOLATE โปรตีนจากพืช (Plant Protein) เหมาะกับใคร?\nคนที่ต้องการเสริมโปรตีน, สร้างกล้ามเนื้อ, ฟื้นฟูกล้ามเนื้อ, ไม่ทานนม หรือ เนื้อสัตว์', 'https://bucket.fitwhey.com/products/1c3988c5c91b0c4d2a8d534b8f76dc44.webp', 610.00, 216, 'Protein', '2024-10-19 02:17:19', '2024-10-19 02:17:19'),
+(6, 'Ultra Mass', 'เหมาะกับใคร ?\nคนผอม แบบไม่มีพุง มีแรงน้อย ต้องการเพิ่มน้ำหนัก และกล้ามเนื้อ, คนที่กินอาหารต่อวันน้อยเกินไป, คนที่ใช้พลังงานสูงมาก ต้องการพลังงานทดแทน​', 'https://bucket.fitwhey.com/ProductType/4537cc8f2a2d44accfb0e234b030a367.webp', 2799.00, 34, 'Protein', '2024-10-19 02:17:19', '2024-10-19 02:17:19'),
+(7, 'BAAM MY WHEY PROTEIN THAI SERIES', 'เหมาะกับใคร?\nต้องการสร้างกล้ามเนื้อ, เร่งการฟื้นฟูกล้ามเนื้อ, อยากได้เวย์ที่ราคาถูก และคุณภาพดี, นักกีฬา​', 'https://bucket.fitwhey.com/ProductType/853107e0fd62658bba426dd5f71f4b37.webp', 1495.00, 65, 'Protein', '2024-10-19 02:17:19', '2024-10-19 02:17:19'),
+(8, 'BAAM ZMA', 'เหมาะกับใคร ?\nคนที่นอนหลับได้ไม่ลึก, คนที่เวลานอนน้อย, ต้องการเพิ่มฮอร์โมนเพศชายให้เต็มที่, ต้องการเพิ่มความแข็งแรงของกล้ามเนื้อ', 'https://bucket.fitwhey.com/products/5024d12edf58bc09a522d30cb62ef26f.webp', 600.00, 1234, 'Vitamin', '2024-10-19 02:17:19', '2024-10-19 02:17:19'),
+(9, 'Vitamin A 25000iu', 'วิตามินที่ช่วยรักษาสุขภาพของดวงตา และช่วยเสริมภูมิคุ้มกัน ต้านอนุมูลอิสระ ใครที่ใช้ดวงตาเยอะ ไม่ว่าจะทำงาน หรืออ่านหนังสือเยอะ ควรมีติดกระเป๋าไว้\n✓  Vitamin A 7,500 mcg. (25,000 IU)*\n✓  บำรุงสายตา\n✓  ช่วยต่อต้าน อนุมูลอิสระ\n✓  ช่วยเสริมภูมิคุ้มกันให้กับร่างกาย\n✓  ช่วยบำรุงสุขภาพผิว ต่อสู้สิว\n✓  ป้องกันเลือดออกตามไรฟัน', 'https://bucket.fitwhey.com/products/7f4afd2a0f5165c6b8a3ef6914edede7.webp', 299.00, 456, 'Vitamin', '2024-10-19 02:17:19', '2024-10-19 02:17:19'),
+(10, 'Vitamin E 400iu', 'อีกหนึ่งวิตามินที่ช่วยเรื่องความงาม และการต้านอนุมูลอิสระ เพื่อให้เราแข็งแรงทั้งภายใน และ ภายนอก พร้อมต่อสู้กับมลภาวะต่างๆที่จะต้องเจอในแต่ละวันได้อย่างมั่งใจ\n✓  Vitamin E 400 IU ต่อเม็ด\n✓  ช่วยบำรุงสุขภาพผิวให้แข็งแรง\n✓  ช่วยต่อต้าน อนุมูลอิสระ\n✓  ช่วยเสริมความแข็งแรงของเซลล์ในร่างกาย\n✓  บรรเทาอาการตะคริว', 'https://bucket.fitwhey.com/ProductType/5c3360dbaf8bc39d05e0e13d63cf48df.webp', 299.00, 456, 'Vitamin', '2024-10-19 02:17:19', '2024-10-19 02:17:19'),
+(11, 'Vitamin C 1000MG', 'วิตามินยอดนิยม ที่มีประโยชน์ต่อร่างกายมากมาย และ เป็นวิตามินที่จำเป็นมากในช่วงที่มีโรคภัย และไวรัสมากมายที่เราต้องต่อสู้ในทุกๆวัน ต้องมีติดกระเป๋าไว้ ขาดไม่ได้!!\n✓  Vitamin C 1,000 mg.*\n✓  เสริมด้วย Rose Hip 25 mg.*\n✓  ช่วยเสริมภูมิคุ้มกันให้กับร่างกาย\n✓  ช่วยต่อต้าน อนุมูลอิสระ\n✓  ช่วยบำรุงสุขภาพผิว ให้แข็งแรง และอ่อนวัย\n✓  ป้องกันเลือดออกตามไรฟัน', 'https://bucket.fitwhey.com/ProductType/75920760885640001689fdeb810b32ce.webp', 299.00, 456, 'Vitamin', '2024-10-19 02:17:19', '2024-10-19 02:17:19'),
+(12, 'SHAKER BLACK SERIES', 'SHAKER BLACK SERIES', 'https://bucket.fitwhey.com/ProductType/6f4f21c0db8b4d6b02d170ed391e5aa1.webp', 299.00, 456, 'SHAKER', '2024-10-19 02:17:19', '2024-10-19 02:17:19'),
+(13, 'Shaker Spider Bottle', 'NEW FITWHEY SPIDER BOTTLE\nFitwhey Shaker ลุคใหม่ พกพาสะดวกใช้งานง่าย จุได้เต็มที่ จบได้ในแก้วเดียว\n\n3 Layers (Shaker ประกอบด้วย 3 ชั้น)\n\nชั้นแรก แก้ว Shaker สามารถใช้ใส่เวย์โปรตีน หรือ อาหารเสริมต่างๆผสมน้ำพร้อมดื่มได้ทันที\nชั้นสอง ช่องใส่วิตามินต่างๆ\nชั้นสาม ช่องใส่ผงโปรตีน และอาหารเสริมต่างๆเพื่อให้ง่ายต่อการพกพาไปได้ทุกที่ \nผลิตจากวัสดุ Food Grade PP \nขนาด 500ML\nBPA FREE', 'https://bucket.fitwhey.com/ProductType/c1df650d3dbd40bcfd9e0152f831b376.webp', 250.00, 4596, 'SHAKER', '2024-10-19 02:17:19', '2024-10-19 02:17:19'),
+(14, 'Stainless Steel Shaker Bottle', 'มาแล้ว FITWHEY SHAKER โฉมใหม่ !!! รุ่น Stainless Steel 1 Layer Shaker Bottle\nลุคใหม่ รูปทรงทันสมัย แข็งแรง ทนทาน ไม่แตกหักง่าย\n\nปากฝาขนาดใหญ่ เทใส่เวย์สะดวก ไม่หก\nฝาปิดเกลียว แน่นหนา ไม่รั่ว\nมีตะแกรงช่วยละลาย เพื่อให้ผงเวย์ ผสมกับน้ำได้ดียิ่งขึ้น\nใหญ่สะใจ จุได้ 25 oz\nขนาดพอดี น้ำหนักเบา พกพาง่าย\nBPA FREE!!', 'https://bucket.fitwhey.com/ProductType/d2db57d0bc514f955d6f7b7de169ae55.webp', 350.00, 456, 'SHAKER', '2024-10-19 02:17:19', '2024-10-19 02:17:19'),
+(15, 'BAAM HOME TREADMILL', 'ขนาดเครื่อง กว้าง x ยาว x สูง : 700 x 1500 x 1200 mm.\nพื้นที่สายพาน กว้าง x ยาว : 420 x 1250 mm.\nน้ำหนักเครื่องโดยประมาณ : 60 KG.\nRun Board Thickness : 15 mm.\nMotor : DC 2 HP\nSpeed (ระดับความเร็ว) : 1 - 14 Km/Hr.\nIncline (ระดับความชัน) : 0-15% Auto Incline\n6 ระดับ การลดการแระแทก\nWeight Limit (น้ำหนักผู้ใช้สูงสุดที่แนะนำ) : 110 kg.', 'https://bucket.fitwhey.com/products/c720a9d416e6dd0df099b990a7b2a75f.webp', 8999.00, 18, 'Exercise equipment', '2024-10-19 02:17:19', '2024-10-19 02:17:19'),
+(16, 'YOGA MAT', 'น้ำหนักเบา ม้วนเก็บได้ เคลื่อนย้ายสะดวก\nผลิตจากยางธรรมชาติ 100% ขนาดใหญ่เป็นพิเศษ 183*61 ซม.\nเบาะมีความหนาแน่นสูง ป้องกันเหงื่อซึม ไม่ดูดซับเหงื่อ​\nผิวสัมผัสนุ่ม ดูดซับความชื้นและระบายอากาศได้ดี แห้งเร็ว ไม่สะสมเชื้อรา&แบคทีเรีย\nยืดหยุ่น ไม่ลื่น ยึดเกาะดี รองรับสรีระและแรงกระแทกได้ดีเยี่ยม\nสำหรับช่วยในการวางท่าที่เหมาะสม สำหรับมือใหม่และมืออาชีพ', 'https://bucket.fitwhey.com/ProductType/0c488a0029cf8c4bd896a98475f8a3b3.png', 240.00, 456, 'Exercise equipment', '2024-10-19 02:17:19', '2024-10-19 02:17:19'),
+(17, 'BAAMXERCORE SPIN BIKES', 'Mainframe: Steel heavy duty frame 100 x 40 x 1.3 oval tube\nFlywheel: 13.2 lbs (6kg) steel flywheel\nPost: Spray painting seat and handle post\nDrive System: Durable belt transmission \nHandlebar height: 89-96.5cm,\nSeat cushion height: 96-103cm,\nSeat cushion to handlebar: 75-85cm\nResistance & Brake System: Unlimited knob of tension adjustment with quick stop break system\nBearing: Best quality heavy duty bearing set\nTransport Wheels: Yes\nCrank: Two piece professional cranks\nSeat adjustments: Move back and forth,up and down.\nLCD mointor: shows distance,cal,time,speed\nSeat Pad: Professional pressure-relieving hollow seat pad\nMax User Weight: 264 lbs (120kg)\nProduct size: 109 x 50 x 123cm', 'https://bucket.fitwhey.com/ProductType/1308c0783d65676fdf7a496b4d0a4e90.webp', 7999.00, 37, 'Exercise equipment', '2024-10-19 02:17:19', '2024-10-19 02:17:19'),
+(18, 'K - 118 Dumbbell Rack', 'ชั้นวางดัมเบล XERCORE DUMBBELL RACK\nชั้นวางดัมเบล แบบ 2 แถว (บน - ล่าง) K - 118 DUMBBELL RACKตัวรองดัมเบลเป็นยางอย่างดี สามารถรับน้ำหนักได้ดี ตัวโครงทำมาจากเหล็กคุณภาพสูง แข็งแรง ทนทาน ไม่งอ', 'https://bucket.fitwhey.com/products/920d6fe855387fb4fbd90f53bc056da5.png', 20000.00, 456, 'Exercise equipment', '2024-10-19 02:17:19', '2024-10-19 02:17:19'),
+(19, '100% CREATINE 5000', 'เหมาะกับใคร ?\nต้องการสร้างความแข็งแรงของกล้ามเนื้อ, เพิ่มผลลัพธ์จากการทานโปรตีน/เวย์ เพียงอย่างเดียว', 'https://bucket.fitwhey.com/ProductType/b8f5ea2805c2ab9d1aa927eaa0e48621.webp', 375.00, 456, 'Creatine', '2024-10-19 02:17:19', '2024-10-19 02:17:19'),
+(20, 'ANGEL CLEANSE', 'เหมาะกับใคร ?\nคนที่มีปัญหาการขับถ่าย, คนที่กินผัก ผลไม้ น้อย, คนที่อยู่ในช่วงไดเอท', 'https://bucket.fitwhey.com/products/dfa98a7a2487bc1632fde144ae6f1b6f.webp', 750.00, 456, 'Vitamin', '2024-10-19 02:17:19', '2024-10-19 02:17:19');
 
 -- --------------------------------------------------------
 
@@ -239,8 +274,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('5eRNpzZLKqqZ2UKeJ5RzlRi7qucJ8Ro1JWjqUp1M', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiSG5ad2xPNnNBR0M0M1RTRFhmYk16UE9taGtKV0RCYjJwd3JtVmpTbiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9zdG9yZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjE6e3M6ODoiaW50ZW5kZWQiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9zdG9yZSI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjI7fQ==', 1728141575),
-('QbGYeq9THpVwtAh085lbHF8JkZSzGoYzcLKZOJ4S', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoidmJWQWdKdmFkcERvdjBTYmFsZEtXN3VvME1xUTZHTlVpZ1VmT0NFYyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzA6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jaGVja291dCI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1728142993);
+('AY84adNLZcWCoHMir96VNih8bNR9USMSZr7pmDCq', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiaG1sbmdYWE91UGxFMk1FcDJKSW5GcTRWWGZnYzJ0dlY4TUN3amFGdiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jYXJ0Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mzt9', 1728294341),
+('fH5NQqHiP0yoIIdjlkW2goqNweiCOaOQSNH2Xuyn', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoibkdiQ0N5azJzSVFWbE9SODdhR2RRaGhPd0x3UklSY2xSNmhaTk9hYiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jYXJ0Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MDp7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1729329548);
 
 -- --------------------------------------------------------
 
@@ -265,7 +300,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'autsada', 'autsada@test.com', NULL, '$2y$12$XbY1qtLwq2cQ.vikQGjPpugNvaeY3zQYkVG7RZ6uNY9q.bwZ0RnS.', NULL, '2024-10-05 08:17:55', '2024-10-05 08:17:55'),
-(2, 'test1', 'test1@test.com', NULL, '$2y$12$aY.LouskHeiaYmlHn7o1M.on4UPy4fEDqC6G9rN.2aBc6vBemXzrS', NULL, '2024-10-05 08:19:34', '2024-10-05 08:19:34');
+(2, 'test1', 'test1@test.com', NULL, '$2y$12$aY.LouskHeiaYmlHn7o1M.on4UPy4fEDqC6G9rN.2aBc6vBemXzrS', NULL, '2024-10-05 08:19:34', '2024-10-05 08:19:34'),
+(3, '1234', '1234@g.com', NULL, '$2y$12$PWlWleUcwhenkIPB5TSS/.Rey/L25doMF/EqbPlfFnD0AD778cxJ.', NULL, '2024-10-05 09:53:55', '2024-10-05 09:53:55');
 
 -- --------------------------------------------------------
 
@@ -290,7 +326,8 @@ CREATE TABLE `users_information` (
 
 INSERT INTO `users_information` (`user_information_id`, `first_name`, `last_name`, `phone_number`, `address`, `user_id`, `created_at`, `updated_at`) VALUES
 (1, '', '', '', '', 1, '2024-10-05 08:17:55', '2024-10-05 08:17:55'),
-(2, '', '', '', '', 2, '2024-10-05 08:19:34', '2024-10-05 08:19:34');
+(2, '', '', '', '', 2, '2024-10-05 08:19:34', '2024-10-05 08:19:34'),
+(3, '', '', '', '', 3, '2024-10-05 09:53:55', '2024-10-05 09:53:55');
 
 --
 -- Indexes for dumped tables
@@ -400,7 +437,7 @@ ALTER TABLE `users_information`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `cart_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `cart_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -430,7 +467,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `product_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `reviews`
@@ -442,13 +479,13 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users_information`
 --
 ALTER TABLE `users_information`
-  MODIFY `user_information_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_information_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
