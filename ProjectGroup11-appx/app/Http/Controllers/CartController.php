@@ -11,69 +11,124 @@ class CartController extends Controller
 {
     public function showCart()
     {
-        // ดึงข้อมูลสินค้า (สมมุติว่าคุณมี Model ที่ชื่อ Product)
-        $product = Product::find(1); // นี่เป็นตัวอย่างการดึงสินค้าด้วย id 1
+        $product = Product::find(1);
 
-        // ดึงจำนวนสินค้าจาก session
+        if (!$product) {
+            return redirect()->back()->with('error', 'Product not found.');
+        }
+
         $cart = session()->get('cart', []);
         $quantity = $cart[$product->id]['quantity'] ?? 1;
 
-        // ส่งข้อมูลไปยัง Blade Template
         return view('cart', compact('product', 'quantity'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $productId)
     {
-        $cart = session()->get('cart');
+        $userInformation = UserInformation::where('user_id', auth()->id())->first();
 
-        // ตรวจสอบว่ามีสินค้านี้ในตะกร้าหรือไม่
-        if (isset($cart[$id])) {
-            if ($request->action === 'increase') {
-                $cart[$id]['quantity'] += 1;
-            } elseif ($request->action === 'decrease' && $cart[$id]['quantity'] > 1) {
-                $cart[$id]['quantity'] -= 1;
-            }
-
-            session()->put('cart', $cart);
+        if (!$userInformation) {
+            return redirect()->back()->with('error', 'User information not found.');
         }
 
-        return redirect()->back()->with('success', 'Cart updated!');
+        $cartItem = Cart::where('product_id', $productId)
+            ->where('user_information_id', $userInformation->user_information_id)
+            ->first();
+
+        if (!$cartItem) {
+            return redirect()->back()->with('error', 'Product not found in cart.');
+        }
+
+        if ($request->action === 'increase') {
+            $cartItem->quantity += 1;
+        } elseif ($request->action === 'decrease' && $cartItem->quantity > 1) {
+            $cartItem->quantity -= 1;
+        }
+
+        $cartItem->save();
+
+        return redirect()->back()->with('success', 'Cart updated successfully!');
     }
+
 
     public function add(Request $request)
     {
-        // รับค่าจำนวนสินค้าที่ต้องการและรหัสสินค้า
         $productId = $request->input('product_id');
         $quantity = $request->input('quantity');
 
-        // ตรวจสอบสินค้าว่ามีอยู่หรือไม่
-        $product = Product::where('product_id', $productId)->firstOrFail();
+        $product = Product::where('product_id', $productId)->first();
 
-        // ดึงข้อมูล user_information_id โดยอ้างอิงจาก user_id ที่ล็อกอินอยู่
-        $userInformation = UserInformation::where('user_id', auth()->id())->firstOrFail();
+        if (!$product) {
+            return redirect()->back()->with('error', 'Product not found.');
+        }
 
-        // เพิ่มสินค้าลงในตะกร้า
-        Cart::create([
-            'product_id' => $product->product_id,
-            'user_information_id' => $userInformation->user_information_id, // ใช้ user_information_id
-            'quantity' => $quantity,
-        ]);
+        $userInformation = UserInformation::where('user_id', auth()->id())->first();
+
+        if (!$userInformation) {
+            return redirect()->back()->with('error', 'User information not found.');
+        }
+
+        $existingCartItem = Cart::where('product_id', $productId)
+            ->where('user_information_id', $userInformation->user_information_id)
+            ->first();
+
+        if ($existingCartItem) {
+            $existingCartItem->quantity += $quantity;
+            $existingCartItem->save();
+        } else {
+            Cart::create([
+                'product_id' => $product->product_id,
+                'user_information_id' => $userInformation->user_information_id,
+                'quantity' => $quantity,
+            ]);
+        }
 
         return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
 
+    public function removed(Request $request)
+    {
+        $cart_id = $request->input('cart_id');
+
+        // ตรวจสอบว่ามีการส่ง cart_id มาหรือไม่
+        if (!$cart_id) {
+            return redirect()->back()->with('error', 'Cart ID not provided.');
+        }
+
+        $userInformation = UserInformation::where('user_id', auth()->id())->first();
+
+        if (!$userInformation) {
+            return redirect()->back()->with('error', 'User information not found.');
+        }
+
+        $cartItem = Cart::where('cart_id', $cart_id)
+            ->where('user_information_id', $userInformation->user_information_id)
+            ->first();
+
+        if ($cartItem) {
+            $cartItem->delete();
+        } else {
+            return redirect()->back()->with('error', 'Product not found in cart.');
+        }
+
+        return redirect()->back()->with('success', 'Product removed from cart successfully!');
+    }
+
+
     public function index()
     {
-        // ดึง user_information_id ของผู้ใช้ที่ล็อกอิน
-        $userInformation = UserInformation::where('user_id', auth()->id())->firstOrFail();
+        $userInformation = UserInformation::where('user_id', auth()->id())->first();
 
-        // ดึงข้อมูลตะกร้าและรวมจำนวนสินค้าที่มี product_id เดียวกัน
-        $cartItems = Cart::select('product_id', \DB::raw('SUM(quantity) as total_quantity'))
+        if (!$userInformation) {
+            return redirect()->back()->with('error', 'User information not found.');
+        }
+
+        // ดึงข้อมูลตะกร้าพร้อม cart_id เพื่อให้สามารถใช้งานใน Blade Template ได้
+        $cartItems = Cart::select('cart_id', 'product_id', \DB::raw('SUM(quantity) as total_quantity'))
             ->where('user_information_id', $userInformation->user_information_id)
-            ->groupBy('product_id')
+            ->groupBy('cart_id', 'product_id')
             ->get();
 
-        // ส่งข้อมูลไปยัง view
         return view('cart.index', compact('cartItems'));
     }
 }

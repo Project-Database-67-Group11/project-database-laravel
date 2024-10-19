@@ -19,23 +19,48 @@
                                         <div class="flex space-x-5">
                                             <p>จำนวน</p>
                                             <div class="flex">
-                                                <button type="button" id="decrease_{{ $item->id }}"
-                                                    class="border border-spacing-1 border-black aspect-square text-center">-</button>
-                                                <p id="quantity_{{ $item->id }}"
-                                                    class="border border-spacing-1 border-black px-2 text-center">
-                                                    {{ $item->total_quantity }}</p>
-                                                <button type="button" id="increase_{{ $item->id }}"
-                                                    class="border border-spacing-1 border-black aspect-square text-center">+</button>
+                                                <div class="flex items-center">
+                                                    <!-- ฟอร์มลดจำนวนสินค้า -->
+                                                    <form action="{{ route('cart.update', ['product_id' => $item->product_id]) }}" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="action" value="decrease">
+                                                        <button type="submit" class="decrease border border-black w-6 h-6 flex items-center justify-center">-</button>
+                                                    </form>
+                                                
+                                                    <!-- แสดงจำนวนสินค้า -->
+                                                    <p id="quantity_{{ $item->product_id }}" class="border border-black w-10 h-6 flex items-center justify-center">
+                                                        {{ $item->total_quantity }}
+                                                    </p>
+                                                
+                                                    <!-- ฟอร์มเพิ่มจำนวนสินค้า -->
+                                                    <form action="{{ route('cart.update', ['product_id' => $item->product_id]) }}" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="action" value="increase">
+                                                        <button type="submit" class="increase border border-black w-6 h-6 flex items-center justify-center">+</button>
+                                                    </form>
+                                                </div>                                                
                                             </div>
                                         </div>
                                         <p class="text-xl">
                                             ฿{{ number_format($item->product->product_price * $item->total_quantity, 2) }}
                                         </p>
                                     </div>
+
+                                    <!-- ปุ่ม Delete -->
+                                    <div class="flex justify-end mt-2">
+                                        <form action="{{ route('cart.removed') }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="hidden" name="cart_id" value="{{ $item->cart_id }}">
+                                            <button type="submit" class="text-red-500">Delete</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                             <hr class="my-4 border-black border-t-2 rounded-full opacity-60">
                         @endforeach
+
+
                     </div>
                     <div class="flex justify-between">
                         <h1 class="text-xl">Total</h1>
@@ -50,7 +75,7 @@
                             class="bg-[#15AF5C] px-2 py-2 text-center text-white rounded-lg w-1/2">Checkout</a>
                     </div>
                 </div>
-                
+
                 {{-- ฝั่งขวา --}}
                 <div class="col-span-1 flex flex-col gap-6">
                     <div class="w-full h-auto bg-[#ffffff] rounded-lg p-5 shadow-lg">
