@@ -67,5 +67,9 @@ Route::post('/cart/update/{product_id}', [CartController::class, 'update'])->nam
 // CheckOut
 Route::post('/place-order', [OrderController::class, 'placeOrder'])->name('cart.placeOrder');
 
+Route::get('/information', function () {
+    return view('information.index');
+});
+
 Route::get('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 require __DIR__.'/auth.php';
