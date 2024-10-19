@@ -67,4 +67,5 @@ Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add')->midd
 Route::delete('/cart/removed', [CartController::class, 'removed'])->name('cart.removed');
 Route::post('/cart/update/{product_id}', [CartController::class, 'update'])->name('cart.update');
 
+Route::get('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 require __DIR__.'/auth.php';

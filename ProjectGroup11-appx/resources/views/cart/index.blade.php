@@ -28,7 +28,7 @@
                                                     </form>
                                                 
                                                     <!-- แสดงจำนวนสินค้า -->
-                                                    <p id="quantity_{{ $item->product_id }}" class="border border-black w-10 h-6 flex items-center justify-center">
+                                                    <p id="quantity_{{ $item->product_id }}" class="border border-black w-9 h-6 flex items-center justify-center">
                                                         {{ $item->total_quantity }}
                                                     </p>
                                                 
@@ -41,7 +41,7 @@
                                                 </div>                                                
                                             </div>
                                         </div>
-                                        <p class="text-xl">
+                                        <p class="text-xl font-bold">
                                             ฿{{ number_format($item->product->product_price * $item->total_quantity, 2) }}
                                         </p>
                                     </div>
@@ -64,7 +64,7 @@
                     </div>
                     <div class="flex justify-between">
                         <h1 class="text-xl">Total</h1>
-                        <h1 class="text-xl">
+                        <h1 class="text-xl font-bold">
                             ฿{{ number_format($cartItems->sum(fn($item) => $item->product->product_price * $item->total_quantity), 2) }}
                         </h1>
                     </div>
