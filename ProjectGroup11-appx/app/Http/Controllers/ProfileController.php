@@ -15,27 +15,61 @@ class ProfileController extends Controller
      * Display the user's profile form.
      */
     public function edit(Request $request): View
-    {
-        return view('profile.edit', [
-            'user' => $request->user(),
+{
+    // Fetch the user and their related user information (first_name, last_name, phone)
+    $userInformation = $request->user()->userInformation;
+
+    // If no user information exists, create a default empty one
+    if (!$userInformation) {
+        $userInformation = new \App\Models\UserInformation();
+        $userInformation->first_name = '';
+        $userInformation->last_name = '';
+        $userInformation->phone_number = '';
+    }
+
+    return view('profile.edit', [
+        'user' => $request->user(),
+        'userInformation' => $userInformation,  // Pass userInformation to the view
+    ]);
+}
+
+public function update(ProfileUpdateRequest $request): RedirectResponse
+{
+    $user = $request->user();
+
+    // Update user (name and email) in the 'users' table
+    $user->fill($request->only(['name', 'email']));
+    
+    // If email is changed, reset email_verified_at
+    if ($user->isDirty('email')) {
+        $user->email_verified_at = null;
+    }
+
+    // Save the user changes
+    $user->save();
+
+    // Now, handle user information (first_name, last_name, phone) in the 'user_information' table
+    $userInformation = $user->userInformation;
+
+    if ($userInformation) {
+        // Update existing user information
+        $userInformation->first_name = $request->input('first_name');
+        $userInformation->last_name = $request->input('last_name');
+        $userInformation->phone_number = $request->input('phone_number');
+        $userInformation->save();
+    } else {
+        // If no user information exists, create new
+        $user->userInformation()->create([
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'phone_number' => $request->input('phone_number'),
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
-    {
-        $request->user()->fill($request->validated());
+    // Redirect back to the profile edit page
+    return Redirect::route('profile.edit')->with('status', 'profile-updated');
+}
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
-
-        $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
-    }
 
     /**
      * Delete the user's account.
