@@ -62,6 +62,12 @@
                             <input type="text" name="username" id="username" value="{{ Auth::user()->name }}"
                                 class="mt-1 block w-full rounded-xl">
                         </div>
+                        
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700">เบอร์โทรศัพท์</label>
+                            <input type="tel" name="phone" id="phone" value="{{ $userInformation->phone ?? '' }}" 
+                                placeholder="กรุณากรอกเบอร์โทรศัพท์" class="mt-1 block w-full rounded-xl">
+                        </div>
                         <div class="col-span-2">
                             <div class="flex w-full gap-4">
                                 <div class="w-1/2">
