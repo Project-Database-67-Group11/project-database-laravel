@@ -11,17 +11,19 @@
             <div class="grid grid-cols-4 gap-6">
                 @foreach($products as $product)
                     <!-- Product Card -->
-                    <div class="bg-gray-100 p-4 rounded-lg flex flex-col justify-between text-center">
-                        <div>
-                            <img src="{{ $product->product_img }}" alt="{{ $product->product_name }}"
-                                class="h-40 w-full object-cover mb-4">
-                            <p class="text-lg font-medium">{{ $product->product_name }}</p>
-                            <p class="text-gray-500">
-                                {{ \Illuminate\Support\Str::words($product->product_description, 15, '...') }}
-                            </p>
+                    <a href="{{ route('product.show', ['id' => $product->product_id]) }}" class="block">
+                        <div class="bg-gray-100 p-4 rounded-lg flex flex-col justify-between text-center h-full">
+                            <div class="flex flex-col flex-grow">
+                                <img src="{{ $product->product_img }}" alt="{{ $product->product_name }}"
+                                    class="h-40 w-full object-cover mb-4">
+                                <p class="text-lg font-medium">{{ $product->product_name }}</p>
+                                <p class="text-gray-500">
+                                    {{ \Illuminate\Support\Str::words($product->product_description, 15, '...') }}
+                                </p>
+                            </div>
+                            <p class="text-xl font-bold mt-4">฿{{ number_format($product->product_price, 2) }}</p>
                         </div>
-                        <p class="text-xl font-bold mt-4">฿{{ (int) $product->product_price }}</p>
-                    </div>
+                    </a>
                 @endforeach
             </div>
         </section>
