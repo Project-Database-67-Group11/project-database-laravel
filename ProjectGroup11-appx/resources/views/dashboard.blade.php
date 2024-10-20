@@ -11,14 +11,15 @@
             <div class="grid grid-cols-4 gap-6">
                 @foreach($products as $product)
                     <!-- Product Card -->
-                    <a href="{{ route('product.show', ['id' => $product->product_id]) }}" class="block">
+                    <a href="{{ route('product.show', ['id' => $product->product_id]) }}"
+                        class="block transition-transform transform hover:scale-105">
                         <div class="bg-gray-100 p-4 rounded-lg flex flex-col justify-between text-center h-full">
                             <div class="flex flex-col flex-grow">
                                 <img src="{{ $product->product_img }}" alt="{{ $product->product_name }}"
-                                    class="h-40 w-full object-cover mb-4">
+                                    class="h-40 w-full object-contain mx-auto bg-white rounded-lg">
                                 <p class="text-lg font-medium">{{ $product->product_name }}</p>
                                 <p class="text-gray-500">
-                                    {{ \Illuminate\Support\Str::words($product->product_description, 15, '...') }}
+                                    {{ \Illuminate\Support\Str::words($product->product_description, 5, '...') }}
                                 </p>
                             </div>
                             <p class="text-xl font-bold mt-4">฿{{ number_format($product->product_price, 2) }}</p>
