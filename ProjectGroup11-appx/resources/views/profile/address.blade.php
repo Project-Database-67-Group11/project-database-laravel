@@ -52,6 +52,7 @@
 
         <div class="bg-white shadow-md col-span-3 rounded-xl p-10 space-y-10">
             <h3 class="text-lg font-semibold mb-4">ที่อยู่ของฉัน</h3>
+
             @if (empty($userInformation->address))
                 <!-- Create new address if none exists -->
                 <form action="{{ route('profile.updateAddress') }}" method="POST">
@@ -70,15 +71,28 @@
             @else
                 <!-- Show address and Edit button if address exists -->
                 <div class="space-y-4"> <!-- Added space-y-4 class for vertical spacing -->
-                    <p class="mb-2">ที่อยู่ของฉัน: {{ $userInformation->address }}</p> <!-- Added mb-2 class -->
+                    <div class="flex items-center">
+                        <p class="mr-4">{{ $userInformation->first_name ?? 'N/A' }}
+                            {{ $userInformation->last_name ?? 'N/A' }}
+                        </p>
+                        <p>{{"|"}}</p>
+                        <p>
+                            {{ $userInformation->phone_number ? ' (+66) ' . substr($userInformation->phone_number, 1, 2) . ' ' . substr($userInformation->phone_number, 3, 3) . ' ' . substr($userInformation->phone_number, 6, 4) : 'N/A' }}
+                        </p>
+                    </div>
+
+                    <p class="mt-2"></p>
+                    <p>{{ $userInformation->address ?? 'N/A' }}</p>
+
                     <a href="{{ route('profile.editAddress') }}"
-                        class="inline-block px-6 py-2 bg-yellow-500 text-white rounded-md">
+                        class="inline-block px-6 py-2 bg-yellow-500 text-white rounded-md mt-4">
                         แก้ไขที่อยู่
                     </a>
                 </div>
             @endif
 
         </div>
+
 
 
 
