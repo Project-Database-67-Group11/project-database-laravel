@@ -35,6 +35,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::middleware('auth')->group(function () {
+    // Route to show the profile address
+    Route::get('/profile/address', [ProfileController::class, 'editAddress'])->name('profile.address');
+
+    // Route to show the edit address form
+    Route::get('/profile/address/edit', [ProfileController::class, 'editAddressForm'])->name('profile.editAddress');
+
+    // Route to update the address
+    Route::patch('/profile/address', [ProfileController::class, 'updateAddress'])->name('profile.updateAddress');
+});
+
 Route::fallback(function () {
     return "<h1>wwwww</h1>";
 });

@@ -57,4 +57,56 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    // Show the address edit form
+    public function editAddress(Request $request): View
+    {
+        $userInformation = $request->user()->userInformation;  // Get user information
+
+        if (!$userInformation) {
+            $userInformation = new \App\Models\UserInformation();
+            $userInformation->address = '';  // Default empty address
+        }
+
+        return view('profile.address', ['userInformation' => $userInformation]);
+    }
+
+    public function editAddressForm(Request $request): View
+    {
+        // Access the user's related information
+        $userInformation = $request->user()->userInformation;
+
+        // If user information is null or address is not set, create a default empty one
+        if (!$userInformation) {
+            $userInformation = new \App\Models\UserInformation();
+            $userInformation->address = '';
+        }
+
+        return view('profile.editAddress', [
+            'userInformation' => $userInformation,
+        ]);
+    }
+
+    public function updateAddress(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'address' => ['required', 'string', 'max:255'],
+        ]);
+
+        $userInformation = $request->user()->userInformation;
+
+        if ($userInformation) {
+            // If user information exists, update it
+            $userInformation->address = $request->input('address');
+            $userInformation->save();
+        } else {
+            // If no user information exists, create a new one
+            $request->user()->userInformation()->create([
+                'address' => $request->input('address'),
+            ]);
+        }
+
+        return Redirect::route('profile.address')->with('status', 'address-updated');
+    }
+
 }

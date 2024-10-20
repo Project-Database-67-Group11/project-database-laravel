@@ -29,9 +29,9 @@
                     <a href="/profile" class="">
                         <h1 class="text-[#ffa200]">ข้อมูลของฉัน</h1>
                     </a>
-                    {{-- <a href="#" class="">
+                    <a href="{{ route('profile.address') }}" class="">
                         <h1 class="my-4">ที่อยู่</h1>
-                    </a> --}}
+                    </a>
                     <a href="#" class="">
                         <h1>เปลี่ยนรหัสผ่าน</h1>
                     </a>

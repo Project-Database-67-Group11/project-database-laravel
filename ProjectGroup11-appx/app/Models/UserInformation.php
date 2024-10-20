@@ -19,4 +19,15 @@ class UserInformation extends Model
         'address',
         'user_id',
     ];
+    // UserInformation model (app/Models/UserInformation.php)
+
+    protected $primaryKey = 'user_information_id'; // If the primary key is not 'id'
+    public $incrementing = true;  // Make sure it's set to auto-increment
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
 }
