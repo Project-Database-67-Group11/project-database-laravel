@@ -84,3 +84,8 @@ Route::get('/information', function () {
 
 Route::get('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 require __DIR__ . '/auth.php';
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile/resetpassword', [ProfileController::class, 'resetPasswordForm'])->name('profile.resetpassword');
+    Route::post('/profile/resetpassword', [ProfileController::class, 'resetPassword'])->name('profile.resetpassword.update');
+});

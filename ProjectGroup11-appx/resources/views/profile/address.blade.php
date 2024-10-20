@@ -32,7 +32,7 @@
                 <a href="{{ route('profile.address') }}" class="">
                     <h1 class="my-4 text-[#ffa200]">ที่อยู่</h1>
                 </a>
-                <a href="#" class="">
+                <a href="/profile/resetpassword" class="">
                     <h1>เปลี่ยนรหัสผ่าน</h1>
                 </a>
             </div>
