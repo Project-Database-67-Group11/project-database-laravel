@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Order;
 
 class ProductController extends Controller
 {
@@ -280,5 +281,19 @@ Product size: 109 x 50 x 123cm',
 
         // ส่งข้อมูลสินค้าไปยัง view ที่จะทำการแสดง
         return view('product.show', compact('product'));
+    }
+
+    public function showTrendingProducts()
+    {
+        $trendingProducts = Order::select('product_id', \DB::raw('COUNT(product_id) as order_count'))
+            ->groupBy('product_id')
+            ->orderByDesc('order_count')
+            ->take(4) // Get the top 4 trending products
+            ->get();
+
+        // Now, retrieve product details for each trending product
+        $products = Product::whereIn('product_id', $trendingProducts->pluck('product_id'))->get();
+
+        return view('dashboard', compact('products'));
     }
 }

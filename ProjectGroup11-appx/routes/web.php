@@ -22,10 +22,9 @@ Route::get('/checkout', function () {
 //     return view('cart.cart');
 // })->name('cart.cart');
 
-Route::get('/store', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
+Route::get('/store', [ProductController::class, 'showTrendingProducts'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 // Route::get('/store', function () {
 //     return "<h1>Welcome to store</h1>";
 // });
@@ -72,4 +71,4 @@ Route::get('/information', function () {
 });
 
 Route::get('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
