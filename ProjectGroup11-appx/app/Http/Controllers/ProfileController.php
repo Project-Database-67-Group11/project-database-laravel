@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Hash; // อย่าลืม import Hash
+use App\Models\Order;
 
 class ProfileController extends Controller
 {
@@ -174,4 +175,28 @@ class ProfileController extends Controller
         return redirect()->route('profile.edit')->with('status', 'เปลี่ยนรหัสผ่านเรียบร้อยแล้ว');
     }
 
-} // ปิดคลาสที่นี่
+    public function Order_index()
+    {
+        $orders = Order::all();
+        return view('profile.Order_index', compact('orders'));
+    }
+
+    public function Order_pending()
+    {
+        $orders = Order::where('status', 'pending')->get();
+        return view('profile.Order_pending', compact('orders'));
+    }
+
+    public function Order_completed()
+    {
+        $orders = Order::where('status', 'completed')->get();
+        return view('profile.Order_completed', compact('orders'));
+    }
+
+    public function Order_cancelled()
+    {
+        $orders = Order::where('status', 'cancelled')->get();
+        return view('profile.Order_cancelled', compact('orders'));
+    }
+
+}

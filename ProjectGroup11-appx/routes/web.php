@@ -36,15 +36,23 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    // Route to show the profile address
     Route::get('/profile/address', [ProfileController::class, 'editAddress'])->name('profile.address');
-
-    // Route to show the edit address form
     Route::get('/profile/address/edit', [ProfileController::class, 'editAddressForm'])->name('profile.editAddress');
-
-    // Route to update the address
     Route::patch('/profile/address', [ProfileController::class, 'updateAddress'])->name('profile.updateAddress');
+
+
+    // Routes for orders
+    Route::get('/profile/index', [ProfileController::class, 'Order_index'])->name('profile.Order_index');
+    Route::get('/profile/pending', [ProfileController::class, 'Order_pending'])->name('profile.Order_pending');
+    Route::get('/profile/completed', [ProfileController::class, 'Order_completed'])->name('profile.Order_completed');
+    Route::get('/profile/cancelled', [ProfileController::class, 'Order_cancelled'])->name('profile.Order_cancelled');
+
+    Route::get('/profile/orders', [OrderController::class, 'index'])->name('profile.orders.index');
+    Route::get('/profile/orders/pending', [OrderController::class, 'pending'])->name('profile.orders.pending');
+    Route::get('/profile/orders/completed', [OrderController::class, 'completed'])->name('profile.orders.completed');
+    Route::get('/profile/orders/cancelled', [OrderController::class, 'cancelled'])->name('profile.orders.cancelled');
 });
+
 
 Route::fallback(function () {
     return "<h1>wwwww</h1>";
@@ -58,11 +66,11 @@ Route::get('/namo', function () {
 Route::get('/add-product', [ProductController::class, 'addProduct']);
 
 // for Route Orders
-Route::get('/orders', [OrderController::class, 'index']);
-Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-Route::get('/orders/pending', [OrderController::class, 'pending'])->name('orders.pending');
-Route::get('/orders/completed', [OrderController::class, 'completed'])->name('orders.completed');
-Route::get('/orders/cancelled', [OrderController::class, 'cancelled'])->name('orders.cancelled');
+// Route::get('/orders', [OrderController::class, 'index']);
+// Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+// Route::get('/orders/pending', [OrderController::class, 'pending'])->name('orders.pending');
+// Route::get('/orders/completed', [OrderController::class, 'completed'])->name('orders.completed');
+// Route::get('/orders/cancelled', [OrderController::class, 'cancelled'])->name('orders.cancelled');
 
 
 // show product
