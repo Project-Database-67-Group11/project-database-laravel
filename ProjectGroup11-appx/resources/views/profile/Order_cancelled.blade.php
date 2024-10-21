@@ -32,7 +32,7 @@
                 <a href="{{ route('profile.address') }}" class="">
                     <h1 class="my-4">ที่อยู่</h1>
                 </a>
-                <a href="#" class="">
+                <a href="/profile/resetpassword" class="">
                     <h1>เปลี่ยนรหัสผ่าน</h1>
                 </a>
             </div>
@@ -55,7 +55,7 @@
                 <a href="{{ route('profile.Order_completed') }}" class="">
                     <h1>สำเร็จการสั่งซื้อ</h1>
                 </a>
-                <a href="{{ route('profile.Order_cancelled') }}" class="text-[#ffa200]">
+                <a href="{{ route('profile.Order_cancelled') }}" class="text-orange-500">
                     <h1>สินค้าที่ยกเลิก</h1>
                 </a>
             </div>

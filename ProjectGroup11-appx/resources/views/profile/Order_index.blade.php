@@ -32,7 +32,7 @@
                 <a href="{{ route('profile.address') }}" class="">
                     <h1 class="my-4">ที่อยู่</h1>
                 </a>
-                <a href="#" class="">
+                <a href="/profile/resetpassword" class="">
                     <h1>เปลี่ยนรหัสผ่าน</h1>
                 </a>
             </div>
@@ -46,7 +46,7 @@
                 <h1 class="pl-4 ">การซื้อของฉัน</h1>
             </div>
             <div class="space-y-6 ml-10 my-4 flex flex-col gap-[1px]">
-                <a href="{{ route('profile.Order_index') }}" class="text-[#ffa200]">
+                <a href="{{ route('profile.Order_index') }}" class="text-orange-500">
                     <h1>ทั้งหมด</h1>
                 </a>
                 <a href="{{ route('profile.Order_pending') }}" class="">

@@ -12,10 +12,15 @@
                         <p class="text-lg font-medium">My Address</p>
                     </header>
                     <div class="text-sm opacity-80">
-                        <p>{{ $userInformation->first_name }} {{ $userInformation->last_name }} | (+66)
-                            {{ substr($userInformation->phone_number, 0, 3) . '-' . substr($userInformation->phone_number, 3, 3) . '-' . substr($userInformation->phone_number, 6) }}
-                        </p>
-                        <p>{{ $userInformation->address }}</p>
+                        @if (empty($userInformation->first_name) || empty($userInformation->last_name) || empty($userInformation->phone_number) || empty($userInformation->address))
+                            <p class="text-red-500">กรุณากรอกข้อมูลส่วนตัวให้ครบถ้วนเพื่อทำการสั่งซื้อสินค้า</p>
+                            <a href="/profile" class="bg-blue-500 text-white px-4 py-2 rounded-lg inline-block mt-4">ไปที่หน้าโปรไฟล์</a>
+                        @else
+                            <p>{{ $userInformation->first_name }} {{ $userInformation->last_name }} | (+66)
+                                {{ substr($userInformation->phone_number, 0, 3) . '-' . substr($userInformation->phone_number, 3, 3) . '-' . substr($userInformation->phone_number, 6) }}
+                            </p>
+                            <p>{{ $userInformation->address }}</p>
+                        @endif
                     </div>
                     <div class="mt-10">
                         @foreach ($cartItems as $item)
@@ -97,10 +102,22 @@
                             </div>
                         </div>
 
-                        <button type="submit"
-                            class="rounded-lg shadow-lg bg-[#15AF5C] text-[#ffffff] text-center py-2 w-full mt-4">
-                            Place Order
-                        </button>
+                        {{-- Place Order Button --}}
+                        @if (empty($userInformation->first_name) ||
+                                empty($userInformation->last_name) ||
+                                empty($userInformation->phone_number) ||
+                                empty($userInformation->address))
+                            <button type="button"
+                                class="rounded-lg shadow-lg bg-gray-400 text-[#ffffff] text-center py-2 w-full mt-4 cursor-not-allowed"
+                                disabled>
+                                Place Order
+                            </button>
+                        @else
+                            <button type="submit"
+                                class="rounded-lg shadow-lg bg-[#15AF5C] text-[#ffffff] text-center py-2 w-full mt-4">
+                                Place Order
+                            </button>
+                        @endif
                     </form>
                 </div>
             </div>
@@ -135,7 +152,7 @@
                 document.getElementById('taxes').textContent = '฿' + formatNumber(taxes);
                 document.getElementById('grandTotal').textContent = '฿' + formatNumber(grandTotal);
                 document.getElementById('shippingCostInput').value = shippingCost.toFixed(
-                2);
+                    2);
             }
         </script>
     </body>

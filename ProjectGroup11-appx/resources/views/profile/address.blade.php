@@ -30,7 +30,7 @@
                     <h1>ข้อมูลของฉัน</h1>
                 </a>
                 <a href="{{ route('profile.address') }}" class="">
-                    <h1 class="my-4 text-[#ffa200]">ที่อยู่</h1>
+                    <h1 class="my-4 text-orange-500">ที่อยู่</h1>
                 </a>
                 <a href="/profile/resetpassword" class="">
                     <h1>เปลี่ยนรหัสผ่าน</h1>
@@ -96,7 +96,7 @@
                     <p>{{ $userInformation->address ?? 'N/A' }}</p>
 
                     <a href="{{ route('profile.editAddress') }}"
-                        class="inline-block px-6 py-2 bg-yellow-500 text-white rounded-md mt-4">
+                        class="inline-block px-6 py-2 bg-orange-500 hover:bg-orange-700 text-white rounded-md mt-4">
                         แก้ไขที่อยู่
                     </a>
                 </div>

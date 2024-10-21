@@ -27,7 +27,7 @@
             </div>
             <div class="space-y-4 ml-10 my-4">
                 <a href="/profile" class="">
-                    <h1 class="text-[#ffa200]">ข้อมูลของฉัน</h1>
+                    <h1 class="text-orange-500">ข้อมูลของฉัน</h1>
                 </a>
                 <a href="{{ route('profile.address') }}" class="">
                     <h1 class="my-4">ที่อยู่</h1>
@@ -107,7 +107,7 @@
                     </div>
 
                     <div class="col-span-2 flex justify-end">
-                        <button type="submit" class="px-4 py-2 bg-orange-500 text-white rounded">บันทึก</button>
+                        <button type="submit" class="px-4 py-2 bg-orange-500 hover:bg-orange-700 text-white rounded">บันทึก</button>
                     </div>
                 </div>
             </form>

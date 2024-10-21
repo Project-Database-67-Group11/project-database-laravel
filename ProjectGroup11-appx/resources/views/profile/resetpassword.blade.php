@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="w-full flex justify-center items-center">
-        <div class="mt-[4.375rem] w-[80%] grid grid-cols-4 gap-6">
+        <div class="mt-5 w-[80%] grid grid-cols-4 gap-6">
             <div>
                 <div class="bg-white shadow-md rounded-xl p-10 flex flex-row gap-4">
                     <div class="flex items-center justify-center">
@@ -32,8 +32,8 @@
                     <a href="{{ route('profile.address') }}" class="">
                         <h1 class="my-4">ที่อยู่</h1>
                     </a>
-                    <a href="#" class="">
-                        <h1 class="text-[#ffa200]">เปลี่ยนรหัสผ่าน</h1>
+                    <a href="/profile/resetpassword" class="">
+                        <h1 class="text-orange-500">เปลี่ยนรหัสผ่าน</h1>
                     </a>
                 </div>
 
@@ -48,35 +48,27 @@
 
                     </a>
                 </div>
+                <div class="space-y-6 ml-10 my-4 flex flex-col gap-[1px]">
+                    <a href="{{ route('profile.Order_index') }}" class="">
+                        <h1>ทั้งหมด</h1>
+                    </a>
+                    <a href="{{ route('profile.Order_pending') }}" class="">
+                        <h1>ค้างชำระ</h1>
+                    </a>
+                    <a href="{{ route('profile.Order_completed') }}" class="">
+                        <h1>สำเร็จการสั่งซื้อ</h1>
+                    </a>
+                    <a href="{{ route('profile.Order_cancelled') }}" class="">
+                        <h1>สินค้าที่ยกเลิก</h1>
+                    </a>
+                </div>
             </div>
 
             <div class="bg-white shadow-md col-span-3 rounded-xl p-10 space-y-10">
-                <div class="bg-white shadow-md col-span-3 rounded-xl p-10 space-y-10">
-                    <h2 class="text-2xl font-semibold">เปลี่ยนรหัสผ่าน</h2>
-                    
-                    <form action="{{ route('profile.resetpassword.update') }}" method="POST">
-                        @csrf
-                        <div class="mb-4">
-                            <label for="old_password" class="block text-lg">รหัสผ่านเดิม</label>
-                            <input type="password" name="old_password" id="old_password" class="w-full p-2 border rounded-xl">
-                        </div>
-                
-                        <div class="mb-4">
-                            <label for="new_password" class="block text-lg">รหัสผ่านใหม่</label>
-                            <input type="password" name="new_password" id="new_password" class="w-full p-2 border rounded-xl">
-                        </div>
-                
-                        <div class="mb-4">
-                            <label for="new_password_confirmation" class="block text-lg">ยืนยันรหัสผ่านใหม่</label>
-                            <input type="password" name="new_password_confirmation" id="new_password_confirmation" class="w-full p-2 border rounded-xl">
-                        </div>
-                
-                        <div class="flex justify-between items-center">
-                            <button type="submit" class="px-6 py-2 bg-orange-500 text-white rounded-lg">ยืนยัน บอบยิน</button>
-                            <a href="{{ route('password.request') }}" class="px-6 py-2 bg-orange-500 text-white rounded-lg">รีเซ็ตรหัสด้วย email</a>
-                        </div>
-                    </form>
-                </div>
+                <h2 class="text-2xl font-semibold">เปลี่ยนรหัสผ่าน</h2>
+                    <div class="max-w-xl">
+                        @include('profile.partials.update-password-form')
+                    </div>
             </div>
         </div>
     @endsection

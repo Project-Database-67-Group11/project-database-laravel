@@ -30,9 +30,9 @@
                     <h1>ข้อมูลของฉัน</h1>
                 </a>
                 <a href="{{ route('profile.address') }}" class="">
-                    <h1 class="my-4 text-[#ffa200]">ที่อยู่</h1>
+                    <h1 class="my-4 text-orange-500">ที่อยู่</h1>
                 </a>
-                <a href="#" class="">
+                <a href="/profile/resetpassword" class="">
                     <h1>เปลี่ยนรหัสผ่าน</h1>
                 </a>
             </div>
@@ -75,7 +75,7 @@
                     @error('address') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                 </div>
 
-                <button type="submit" class="px-6 py-2 bg-blue-500 text-white rounded-md">อัปเดตที่อยู่</button>
+                <button type="submit" class="px-6 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md">อัปเดตที่อยู่</button>
             </form>
         </div>
 

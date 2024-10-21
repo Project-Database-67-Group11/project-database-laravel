@@ -32,7 +32,7 @@
                 <a href="{{ route('profile.address') }}" class="">
                     <h1 class="my-4">ที่อยู่</h1>
                 </a>
-                <a href="#" class="">
+                <a href="/profile/resetpassword" class="">
                     <h1>เปลี่ยนรหัสผ่าน</h1>
                 </a>
             </div>
@@ -49,7 +49,7 @@
                 <a href="{{ route('profile.Order_index') }}" class="">
                     <h1>ทั้งหมด</h1>
                 </a>
-                <a href="{{ route('profile.Order_pending') }}" class="text-[#ffa200]">
+                <a href="{{ route('profile.Order_pending') }}" class="text-orange-500">
                     <h1>ค้างชำระ</h1>
                 </a>
                 <a href="{{ route('profile.Order_completed') }}" class="">

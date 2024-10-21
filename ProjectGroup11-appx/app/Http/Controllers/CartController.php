@@ -128,7 +128,10 @@ class CartController extends Controller
             ->where('user_information_id', $userInformation->user_information_id)
             ->groupBy('cart_id', 'product_id')
             ->get();
+            
+        // ดึงสินค้าแบบสุ่ม 3 ชิ้น
+        $randomProducts = Product::inRandomOrder()->limit(3)->get();
 
-        return view('cart.index', compact('cartItems'));
+        return view('cart.index', compact('cartItems', 'randomProducts'));
     }
 }
