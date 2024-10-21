@@ -85,6 +85,6 @@ class OrderController extends Controller
         // ล้างตะกร้าหลังจากทำการสั่งซื้อสำเร็จ
         Cart::where('user_information_id', $userInformation->user_information_id)->delete();
     
-        return redirect()->route('orders.index')->with('success', 'Order placed successfully!');
+        return redirect()->route('profile.Order_index')->with('success', 'Order placed successfully!');
     }
 }
