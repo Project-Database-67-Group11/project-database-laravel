@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="w-full flex justify-center items-center">
-        <div class="mt-5 mb-5 w-[80%] grid grid-cols-4 gap-6">
+        <div class="mt-[4.375rem] mb-5 w-[80%] grid grid-cols-4 gap-6">
             <!-- Sidebar with account information -->
             <div>
                 <!-- Account Information Sidebar -->
