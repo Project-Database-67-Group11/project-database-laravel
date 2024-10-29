@@ -112,10 +112,10 @@
                                     </div>
                                     <div class="flex items-end justify-end mt-5 gap-3">
                                         <button class="bg-green-500 text-black py-2 px-4 rounded-lg hover:bg-green-600 transition hover:text-white">
-                                            กดได้แล้ว
+                                            ชำระแล้ว
                                         </button>
                                         <button class="bg-blue-500 text-black py-2 px-4 rounded-lg hover:bg-blue-600 transition hover:text-white">
-                                            กดยกเลิก
+                                            ยกเลิก
                                         </button>
                                     </div>
                                 </div>
