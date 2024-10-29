@@ -196,6 +196,7 @@ class ProfileController extends Controller
     public function Order_cancelled()
     {
         $orders = Order::where('status', 'cancelled')->get();
+        // $ordersGrouped = $orders->groupBy('product_id');
         return view('profile.Order_cancelled', compact('orders'));
     }
 

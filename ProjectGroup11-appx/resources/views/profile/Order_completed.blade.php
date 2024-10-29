@@ -74,43 +74,46 @@
                 <div class="px-6 mt-2">
                     @foreach($orders as $order)
                     @if($order->product && $order->status === 'completed')
-                    <div class="bg-white shadow-md rounded-lg mb-4 p-6">
-                        <div class="h-25 flex items-center justify-between text-gray-700">
-                            <div class="flex flex-row gap-4">
-                                <div class="flex flex-col items-center">
-                                    <h1 class="text-black font-bold">{{ $order->product_id }}</h1>
-                                    <div class="product-image">
-                                    <img src="{{ $order->product->product_img }}" alt="{{ $order->product->product_name }}" class="w-24 h-24 rounded-lg">
+                                <div class="bg-white shadow-md rounded-lg mb-4 p-6">
+                                    <div class="text-center flex items-center justify-end">
+                                        <h1 class="bg-green-100 text-green-700 text-sm py-1 px-3 rounded-full w-max">{{ $order->status }}</>
+                                    </div>
+                                    <div class="grid grid-cols-2 ">
+                                        <div class="flex flex-row gap-4">
+                                            <div class="flex flex-col items-center">
+                                                <h1 class="text-black font-bold">{{ $order->product_id }}</h1>
+                                                <div >
+                                                    <img src="{{ $order->product->product_img }}" alt="{{ $order->product->product_name }}" class="w-32 h-32 rounded-lg">
+                                                </div>
+                                            </div>
+    
+                                            <div class="flex items-start justify-center mt-6">
+                                                <h1 class="text-lg font-semibold text-black">{{ $order->product->product_name }}</h1>
+                                            </div>
+                                        </div>
+    
+                                        <div class="flex flex-col gap-2 items-end justify-end text-right">
+                                            <div class="flex flex-col gap-4">
+                                                <div class="mt-5">
+                                                    <h1 class="text-black font-semibold">{{ $order->date }}</h1>
+                                                </div>
+                                                <div >
+                                                    <h1 class="text-xl font-bold text-orange-500">฿ {{ $order->product->product_price * $order->quantity }}</h1>
+                                                    <p class="text-sm text-gray-600">{{ $order->quantity }} รายการ</p>
+                                                </div>
+                                                <div>
+                                                    <p class="text-sm text-gray-600">ราคารวมค่าส่งและภาษี : ฿ {{ $order->total_price }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-center">
+                                        <button class="">ดูเพิ่มเติม</button>
                                     </div>
                                 </div>
-
-                                <div class="flex flex-col gap-12 justify-center">
-                                    <h1 class="text-lg font-semibold text-black">{{ $order->product->product_name }}</h1>
-                                    <span class="bg-green-100 text-green-700 text-sm py-1 px-3 rounded-full w-max">{{ $order->status }}</span>
-                                </div>
-                            </div>
-
-                            <div class="flex flex-col gap-4 items-center justify-center">
-                                <div class="text-center">
-                                    <h1 class="text-black font-semibold">{{ $order->date }}</h1>
-                                </div>
-                                <div class="text-center">
-                                    <h1 class="text-xl font-bold text-orange-500">฿ {{ $order->total_price }}</h1>
-                                    <p class="text-sm text-gray-600">{{ $order->quantity }} รายการ</p>
-                                </div>
-
-                                <div class="flex gap-3">
-                                    <button class="bg-green-500 text-black py-2 px-4 rounded-lg hover:bg-green-600 transition hover:text-white">ให้คะแนน</button>
-                                    <button class="bg-blue-500 text-black py-2 px-4 rounded-lg hover:bg-blue-600 transition hover:text-white">
-                                        <a href="{{ route('product.show', $order->product_id) }}" class="">สั่งใหม่</a>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @else
-                        <p class="text-lg">ไม่พบข้อมูลสินค้า</p>
-                    @endif
+                            @else
+                                <p class="text-lg">ไม่พบข้อมูลสินค้า</p>
+                            @endif
                     @endforeach
                 </div>
             </div>
