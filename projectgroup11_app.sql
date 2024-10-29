@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 19, 2024 at 01:28 PM
+-- Generation Time: Oct 29, 2024 at 06:21 PM
 -- Server version: 8.0.30
--- PHP Version: 8.1.10
+-- PHP Version: 8.3.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -167,19 +167,23 @@ CREATE TABLE `orders` (
   `status` enum('pending','completed','cancelled') COLLATE utf8mb4_unicode_ci DEFAULT 'pending',
   `payment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `shipping` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `all_order_id` bigint UNSIGNED NOT NULL
+  `all_order_id` bigint UNSIGNED NOT NULL,
+  `order_addr` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`order_id`, `product_id`, `user_information_id`, `date`, `quantity`, `total_price`, `created_at`, `updated_at`, `status`, `payment`, `shipping`, `all_order_id`) VALUES
-(6, 6, 1, '2024-10-19', 1, 3651.78, '2024-10-19 06:11:04', '2024-10-19 06:11:04', 'pending', 'cash', 'fast', 1),
-(7, 10, 1, '2024-10-19', 2, 3651.78, '2024-10-19 06:11:04', '2024-10-19 06:11:04', 'pending', 'cash', 'fast', 1),
-(8, 3, 1, '2024-10-19', 1, 1353.43, '2024-10-19 06:13:27', '2024-10-19 06:13:27', 'pending', 'cash', 'fast', 2),
-(9, 16, 1, '2024-10-19', 4, 1353.43, '2024-10-19 06:13:27', '2024-10-19 06:13:27', 'pending', 'cash', 'fast', 2),
-(10, 3, 1, '2024-10-19', 1, 320.83, '2024-10-19 06:17:53', '2024-10-19 06:17:53', 'pending', 'card', 'normal', 3);
+INSERT INTO `orders` (`order_id`, `product_id`, `user_information_id`, `date`, `quantity`, `total_price`, `created_at`, `updated_at`, `status`, `payment`, `shipping`, `all_order_id`, `order_addr`) VALUES
+(33, 1, 1, '2024-10-29', 1, 1928.55, '2024-10-29 07:05:25', '2024-10-29 10:10:08', 'completed', 'cash', 'fast', 1, 'Autsada Wiriya, 0999999999, 1234 m.3 ABCB WASD ChiangMai'),
+(34, 3, 1, '2024-10-29', 1, 1928.55, '2024-10-29 07:05:25', '2024-10-29 10:10:08', 'completed', 'cash', 'fast', 1, 'Autsada Wiriya, 0999999999, 1234 m.3 ABCB WASD ChiangMai'),
+(37, 1, 2, '2024-10-29', 1, 1604.14, '2024-10-29 10:35:08', '2024-10-29 10:35:08', 'pending', 'cash', 'normal', 2, 'fsdfsd fsdfsd, 312125, fdsfsd'),
+(38, 1, 1, '2024-10-29', 1, 1924.96, '2024-10-29 10:35:19', '2024-10-29 10:59:25', 'cancelled', 'cash', 'normal', 3, 'Autsada Wiriya, 0999999999, 1234 m.3 ABCB WASD ChiangMai'),
+(39, 12, 1, '2024-10-29', 1, 1924.96, '2024-10-29 10:35:19', '2024-10-29 10:59:25', 'cancelled', 'cash', 'normal', 3, 'Autsada Wiriya, 0999999999, 1234 m.3 ABCB WASD ChiangMai'),
+(40, 3, 1, '2024-10-29', 1, 23089.89, '2024-10-29 11:10:59', '2024-10-29 11:12:05', 'cancelled', 'cash', 'normal', 4, 'Autsada Wiriya, 0999999999, 1234 m.3 ABCB WASD ChiangMai'),
+(41, 5, 1, '2024-10-29', 2, 23089.89, '2024-10-29 11:10:59', '2024-10-29 11:12:05', 'cancelled', 'cash', 'normal', 4, 'Autsada Wiriya, 0999999999, 1234 m.3 ABCB WASD ChiangMai'),
+(42, 18, 1, '2024-10-29', 1, 23089.89, '2024-10-29 11:10:59', '2024-10-29 11:12:05', 'cancelled', 'cash', 'normal', 4, 'Autsada Wiriya, 0999999999, 1234 m.3 ABCB WASD ChiangMai');
 
 -- --------------------------------------------------------
 
@@ -272,7 +276,9 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('fH5NQqHiP0yoIIdjlkW2goqNweiCOaOQSNH2Xuyn', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoibkdiQ0N5azJzSVFWbE9SODdhR2RRaGhPd0x3UklSY2xSNmhaTk9hYiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjg6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9vcmRlcnMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjM6InVybCI7YTowOnt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1729343873);
+('Ey6lp4CfXqVmOPmXIAv2YFNSna6jIdktnNpZQIqE', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiZ2xJa1I5OGJ1REJmSlFnd2RtZ2JVMzBPOWdHN1VRbHcyWUU3RU8zUiI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czoyOToiaHR0cDovLzEyNy4wLjAuMTo4MDAwL3Byb2ZpbGUiO31zOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozNzoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL3Byb2ZpbGUvYWRkcmVzcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjQ7fQ==', 1730226065),
+('OqinXu16I3LnjsPXVBMC4MhzjbLIgQeA2VRg1ljZ', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiYUhNQktUQmF4V1ZBUnpvSjdVUmNTTjFZZU10Q1hNa1VLU3VPd3oyRiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9wcm9maWxlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MDp7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1730225928),
+('z0p9viFiqblSourqLQYTx3uQxP6IVimFauZQQe9F', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiQ3djRmVnWXNQWlprbDZvUlZhR0RTT0cyMXh5aldaNTdaRXgyalRiMyI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjM3OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvcHJvZmlsZS9wZW5kaW5nIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mjt9', 1730225131);
 
 -- --------------------------------------------------------
 
@@ -296,9 +302,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'autsada', 'autsada@test.com', NULL, '$2y$12$XbY1qtLwq2cQ.vikQGjPpugNvaeY3zQYkVG7RZ6uNY9q.bwZ0RnS.', NULL, '2024-10-05 08:17:55', '2024-10-05 08:17:55'),
+(1, 'autsada', 'autsada@test.com', NULL, '$2y$12$QCwiadyl1Pk6swa0o/ir1.hPILh1u3CQhg5JzgLCfRLynACkjjjsC', NULL, '2024-10-05 08:17:55', '2024-10-21 00:35:20'),
 (2, 'test1', 'test1@test.com', NULL, '$2y$12$aY.LouskHeiaYmlHn7o1M.on4UPy4fEDqC6G9rN.2aBc6vBemXzrS', NULL, '2024-10-05 08:19:34', '2024-10-05 08:19:34'),
-(3, '1234', '1234@g.com', NULL, '$2y$12$PWlWleUcwhenkIPB5TSS/.Rey/L25doMF/EqbPlfFnD0AD778cxJ.', NULL, '2024-10-05 09:53:55', '2024-10-05 09:53:55');
+(3, '1234', '1234@g.com', NULL, '$2y$12$PWlWleUcwhenkIPB5TSS/.Rey/L25doMF/EqbPlfFnD0AD778cxJ.', NULL, '2024-10-05 09:53:55', '2024-10-05 09:53:55'),
+(4, 'projectgroup11', 'root@cmu.c', NULL, '$2y$12$TZNyvquXsLw3th8PCV.A4OzQzHmov9zDG57bWs4gOXZsj1e9GgGH6', NULL, '2024-10-29 11:20:14', '2024-10-29 11:20:14');
 
 -- --------------------------------------------------------
 
@@ -322,9 +329,10 @@ CREATE TABLE `users_information` (
 --
 
 INSERT INTO `users_information` (`user_information_id`, `first_name`, `last_name`, `phone_number`, `address`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 'Autsada', 'Wiriya', '0999999999', '123/1 m.1 t.cmu a.cmu p.cmu', 1, '2024-10-05 08:17:55', '2024-10-05 08:17:55'),
-(2, '', '', '', '', 2, '2024-10-05 08:19:34', '2024-10-05 08:19:34'),
-(3, '', '', '', '', 3, '2024-10-05 09:53:55', '2024-10-05 09:53:55');
+(1, 'Autsada', 'Wiriya', '0999999999', '1234 m.3 ABCB WASD ChiangMai', 1, '2024-10-05 08:17:55', '2024-10-21 00:44:54'),
+(2, 'fsdfsd', 'fsdfsd', '312125', 'fdsfsd', 2, '2024-10-05 08:19:34', '2024-10-29 10:34:56'),
+(3, '', '', '', '', 3, '2024-10-05 09:53:55', '2024-10-05 09:53:55'),
+(4, 'asdfgh', 'zxcvbnm', '0998887777', 'lololololo 1234 iooio', 4, '2024-10-29 11:20:14', '2024-10-29 11:21:05');
 
 --
 -- Indexes for dumped tables
@@ -434,7 +442,7 @@ ALTER TABLE `users_information`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `cart_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `cart_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -458,7 +466,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `order_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -476,13 +484,13 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users_information`
 --
 ALTER TABLE `users_information`
-  MODIFY `user_information_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_information_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
