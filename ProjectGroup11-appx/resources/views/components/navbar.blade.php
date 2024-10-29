@@ -32,18 +32,23 @@
                     </a>
                 @endif
                 {{-- Profile --}}
-                <div class="flex">
+                <div class="relative">
                     @if (Auth::check())
-                        <a href="/profile" class="flex justify-center items-center gap-2">
+                        <button onclick="toggleDropdown()" class="flex justify-center items-center gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
                                 viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                                 <path
                                     d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z" />
                             </svg>
-                            <h1 class="">
-                                {{ Auth::user()->name }}
-                            </h1>
-                        </a>
+                            <h1>{{ Auth::user()->name }}</h1>
+                        </button>
+                        <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1">
+                            <a href="/profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</button>
+                            </form>
+                        </div>
                     @else
                         <a href="{{ route('login') }}" class="flex justify-center items-center gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
@@ -51,14 +56,33 @@
                                 <path
                                     d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z" />
                             </svg>
-                            <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
+                            <span>Login</span>
                         </a>
                     @endif
                 </div>
             </div>
         </div>
-
     </div>
+
+    <script>
+        function toggleDropdown() {
+            var dropdown = document.getElementById("dropdownMenu");
+            dropdown.classList.toggle("hidden");
+        }
+
+        // Close dropdown if clicked outside
+        window.onclick = function (event) {
+            if (!event.target.matches('.flex')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (!openDropdown.classList.contains('hidden')) {
+                        openDropdown.classList.add('hidden');
+                    }
+                }
+            }
+        }
+    </script>
 </body>
 
 </html>
