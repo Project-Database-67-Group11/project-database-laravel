@@ -50,7 +50,7 @@
                     <h1>ทั้งหมด</h1>
                 </a>
                 <a href="{{ route('profile.Order_pending') }}" class="">
-                    <h1>ค้างชำระ</h1>
+                    <h1>กำลังดำเนินการ</h1>
                 </a>
                 <a href="{{ route('profile.Order_completed') }}" class="">
                     <h1>สำเร็จการสั่งซื้อ</h1>

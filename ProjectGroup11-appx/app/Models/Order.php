@@ -6,16 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    protected $table = 'orders'; // ชื่อของตาราง
+    protected $primaryKey = 'order_id'; // ตั้งชื่อ primary key
+    public $incrementing = false; // กำหนดว่า primary key เป็น auto-increment หรือไม่
+    protected $keyType = 'string'; // กำหนดประเภทของ primary key หากเป็น string (เช่น UUID)
+
     protected $fillable = [
-        'all_order_id',  // เพิ่มฟิลด์ all_order_id
-        'product_id', // รหัสสินค้า
-        'user_information_id', // รหัสผู้ใช้
-        'date', // วันที่
-        'quantity', // ปริมาณ
-        'total_price', // ราคารวม
-        'status', // สถานะ
-        'payment', // การชำระเงิน
-        'shipping', // การจัดส่ง
+        'all_order_id',
+        'product_id',
+        'user_information_id',
+        'date',
+        'quantity',
+        'total_price',
+        'status',
+        'payment',
+        'shipping',
+        'order_addr',
     ];
 
     // ความสัมพันธ์ระหว่าง Order และ Product
@@ -23,6 +29,5 @@ class Order extends Model
     {
         return $this->belongsTo(Product::class, 'product_id');
     }
-
     
 }

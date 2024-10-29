@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Hash; // อย่าลืม import Hash
 use App\Models\Order;
+use App\Models\UserInformation;
 
 class ProfileController extends Controller
 {
@@ -177,27 +178,73 @@ class ProfileController extends Controller
 
     public function Order_index()
     {
-        $orders = Order::all();
+        // ดึง user_information ของผู้ใช้ที่เข้าสู่ระบบ
+        $userInformation = UserInformation::where('user_id', auth()->id())->first();
+    
+        if (!$userInformation) {
+            return redirect()->back()->with('error', 'User information not found.');
+        }
+    
+        // ดึงคำสั่งซื้อที่ตรงกับ user_information_id ของผู้ใช้ปัจจุบัน และให้แสดงเพียงแค่ unique all_order_id
+        $orders = Order::where('user_information_id', $userInformation->user_information_id)
+                       ->orderBy('all_order_id', 'desc')
+                       ->get()
+                       ->unique('all_order_id');
+    
         return view('profile.Order_index', compact('orders'));
     }
-
+    
     public function Order_pending()
     {
-        $orders = Order::where('status', 'pending')->get();
+        $userInformation = UserInformation::where('user_id', auth()->id())->first();
+    
+        if (!$userInformation) {
+            return redirect()->back()->with('error', 'User information not found.');
+        }
+    
+        // ดึงคำสั่งซื้อที่ตรงกับ user_information_id ของผู้ใช้ปัจจุบัน และมีสถานะ pending
+        $orders = Order::where('user_information_id', $userInformation->user_information_id)
+                       ->where('status', 'pending')
+                       ->orderBy('all_order_id', 'desc')
+                       ->get()
+                       ->unique('all_order_id');
+    
         return view('profile.Order_pending', compact('orders'));
     }
-
+    
     public function Order_completed()
     {
-        $orders = Order::where('status', 'completed')->get();
+        $userInformation = UserInformation::where('user_id', auth()->id())->first();
+    
+        if (!$userInformation) {
+            return redirect()->back()->with('error', 'User information not found.');
+        }
+    
+        // ดึงคำสั่งซื้อที่ตรงกับ user_information_id ของผู้ใช้ปัจจุบัน และมีสถานะ completed
+        $orders = Order::where('user_information_id', $userInformation->user_information_id)
+                       ->where('status', 'completed')
+                       ->orderBy('all_order_id', 'desc')
+                       ->get()
+                       ->unique('all_order_id');
+    
         return view('profile.Order_completed', compact('orders'));
     }
-
+    
     public function Order_cancelled()
     {
-        $orders = Order::where('status', 'cancelled')->get();
-        // $ordersGrouped = $orders->groupBy('product_id');
+        $userInformation = UserInformation::where('user_id', auth()->id())->first();
+    
+        if (!$userInformation) {
+            return redirect()->back()->with('error', 'User information not found.');
+        }
+    
+        // ดึงคำสั่งซื้อที่ตรงกับ user_information_id ของผู้ใช้ปัจจุบัน และมีสถานะ cancelled
+        $orders = Order::where('user_information_id', $userInformation->user_information_id)
+                       ->where('status', 'cancelled')
+                       ->orderBy('all_order_id', 'desc')
+                       ->get()
+                       ->unique('all_order_id');
+    
         return view('profile.Order_cancelled', compact('orders'));
-    }
-
+    }    
 }

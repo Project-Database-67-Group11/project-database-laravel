@@ -50,7 +50,7 @@
                     <h1>ทั้งหมด</h1>
                 </a>
                 <a href="{{ route('profile.Order_pending') }}" class="">
-                    <h1>ค้างชำระ</h1>
+                    <h1>กำลังดำเนินการ</h1>
                 </a>
                 <a href="{{ route('profile.Order_completed') }}" class="text-orange-500">
                     <h1>สำเร็จการสั่งซื้อ</h1>
@@ -81,9 +81,8 @@
                                     <div class="grid grid-cols-2 ">
                                         <div class="flex flex-row gap-4">
                                             <div class="flex flex-col items-center">
-                                                <h1 class="text-black font-bold">{{ $order->product_id }}</h1>
                                                 <div >
-                                                    <img src="{{ $order->product->product_img }}" alt="{{ $order->product->product_name }}" class="w-32 h-32 rounded-lg">
+                                                    <img src="{{ $order->product->product_img }}" alt="{{ $order->product->product_name }}" class="h-32 w-32 object-cover rounded-md">
                                                 </div>
                                             </div>
     
@@ -98,7 +97,7 @@
                                                     <h1 class="text-black font-semibold">{{ $order->date }}</h1>
                                                 </div>
                                                 <div >
-                                                    <h1 class="text-xl font-bold text-orange-500">฿ {{ $order->product->product_price * $order->quantity }}</h1>
+                                                    <h1 class="text-xl font-bold text-orange-500">฿ {{ number_format($order->product->product_price * $order->quantity, 2) }}</h1>
                                                     <p class="text-sm text-gray-600">{{ $order->quantity }} รายการ</p>
                                                 </div>
                                                 <div>
@@ -108,7 +107,9 @@
                                         </div>
                                     </div>
                                     <div class="flex items-center justify-center">
-                                        <button class="">ดูเพิ่มเติม</button>
+                                        <a href="{{ route('profile.orders.seemore', ['allOrderId' => $order->all_order_id]) }}" class="">
+                                            ดูเพิ่มเติม
+                                        </a>
                                     </div>
                                 </div>
                             @else

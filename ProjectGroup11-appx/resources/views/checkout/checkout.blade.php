@@ -12,9 +12,13 @@
                         <p class="text-lg font-medium">My Address</p>
                     </header>
                     <div class="text-sm opacity-80">
-                        @if (empty($userInformation->first_name) || empty($userInformation->last_name) || empty($userInformation->phone_number) || empty($userInformation->address))
+                        @if (empty($userInformation->first_name) ||
+                                empty($userInformation->last_name) ||
+                                empty($userInformation->phone_number) ||
+                                empty($userInformation->address))
                             <p class="text-red-500">กรุณากรอกข้อมูลส่วนตัวให้ครบถ้วนเพื่อทำการสั่งซื้อสินค้า</p>
-                            <a href="/profile" class="bg-blue-500 text-white px-4 py-2 rounded-lg inline-block mt-4">ไปที่หน้าโปรไฟล์</a>
+                            <a href="/profile"
+                                class="bg-blue-500 text-white px-4 py-2 rounded-lg inline-block mt-4">ไปที่หน้าโปรไฟล์</a>
                         @else
                             <p>{{ $userInformation->first_name }} {{ $userInformation->last_name }} | (+66)
                                 {{ substr($userInformation->phone_number, 0, 3) . '-' . substr($userInformation->phone_number, 3, 3) . '-' . substr($userInformation->phone_number, 6) }}
@@ -114,7 +118,7 @@
                             </button>
                         @else
                             <button type="submit"
-                                class="rounded-lg shadow-lg bg-[#15AF5C] text-[#ffffff] text-center py-2 w-full mt-4">
+                                class="rounded-lg shadow-lg bg-[#15AF5C] text-[#ffffff] text-center py-2 w-full mt-4" onclick="showAlert()">
                                 Place Order
                             </button>
                         @endif
@@ -124,6 +128,10 @@
         </div>
 
         <script>
+            function showAlert() {
+                alert("Your order has been placed successfully!");
+            }
+
             function updateTotals() {
                 let subtotal = {{ $subtotal }};
                 let taxes = 0.03 * subtotal;
@@ -151,8 +159,7 @@
                 document.getElementById('shippingCost').textContent = '฿' + formatNumber(shippingCost);
                 document.getElementById('taxes').textContent = '฿' + formatNumber(taxes);
                 document.getElementById('grandTotal').textContent = '฿' + formatNumber(grandTotal);
-                document.getElementById('shippingCostInput').value = shippingCost.toFixed(
-                    2);
+                document.getElementById('shippingCostInput').value = shippingCost.toFixed(2);
             }
         </script>
     </body>

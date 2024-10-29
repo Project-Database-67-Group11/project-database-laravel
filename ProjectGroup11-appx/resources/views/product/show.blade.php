@@ -12,7 +12,7 @@
                 <p class="text-md opacity-70">{{ $product->product_description }}</p>
                 <p class="text-4xl font-bold text-blue-500">฿{{ number_format($product->product_price, 2) }}</p>
 
-                <form action="{{ route('cart.add') }}" method="POST" class="space-y-10">
+                <form action="{{ route('cart.add') }}" method="POST" class="space-y-10" onsubmit="return showAlert()">
                     @csrf
                     <input type="hidden" name="product_id" value="{{ $product->product_id }}">
                     <div>
@@ -33,6 +33,19 @@
             </div>
         </div>
         <script>
+            function showAlert() {
+                // ดึงชื่อสินค้า
+                const productName = "{{ $product->product_name }}";
+                // ดึงจำนวนที่ผู้ใช้เลือก
+                const quantity = document.getElementById('quantity').value;
+
+                // แสดง alert
+                alert("เพิ่มสินค้า: " + productName + " จำนวน: " + quantity);
+
+                // คืนค่า true เพื่อให้ฟอร์มถูกส่ง
+                return true;
+            }
+
             document.addEventListener('DOMContentLoaded', function() {
                 let quantityInput = document.getElementById('quantity');
                 let maxQuantity = parseInt(quantityInput.max);
