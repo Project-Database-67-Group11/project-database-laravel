@@ -16,14 +16,14 @@
 </head>
 
 <body>
-    <div class="bg-[#ffffff] shadow-2xl flex justify-center items-center font-[Kanit] h-24 py-2">
+    <div class="bg-[#ffffff] shadow-lg border  flex justify-center items-center font-[Kanit] h-24 py-2">
         {{-- logo --}}
         <div class="w-[80%] flex justify-between h-full">
             <div><a href="/store"><img src="{{ asset('img/logo.png') }}" alt="Logo" class="h-full"></a></div>
-            <div class="flex items-center justify-center space-x-4">
+            <div class="flex items-center justify-center space-x-4 gap-6">
                 {{-- Cart --}}
                 @if (Auth::check())
-                    <a href="/cart">
+                    <a href="/cart" class="mt-1">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
                             viewBox="0 0 576 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                             <path

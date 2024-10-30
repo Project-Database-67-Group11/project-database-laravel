@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="w-full flex justify-center items-center">
+<div class="w-full flex justify-center items-center mb-10">
     <!-- Main Content -->
     <div class="mt-[4.375rem] w-[80%]">
         <!-- Trending Items Section -->
