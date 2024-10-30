@@ -134,10 +134,10 @@
                             <textarea id="comment" name="comment" class="border rounded-lg p-2 w-full resize-none" rows="4"></textarea>
                         </div>
                         <div class="flex justify-between">
-                            <button type="submit"
-                                class="bg-green-500 text-white px-4 py-2 rounded-lg">ส่งความคิดเห็น</button>
                             <a href="{{ url()->previous() }}" class="bg-red-500 text-white px-4 py-2 rounded-lg">กลับ</a>
+                            <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-lg">ส่งความคิดเห็น</button>
                         </div>
+                        
                     </form>
                 @endif
             </div>
