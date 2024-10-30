@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <body class="bg-[#E3E7F1] min-h-screen pb-20 font-[Kanit]">
+    <div class="bg-[#E3E7F1] min-h-screen pb-20 font-[Kanit]">
         <div class="w-full flex justify-center items-center">
             <div class="mt-[4.375rem] w-[80%] grid grid-cols-3 gap-6">
                 {{-- checkout section --}}
@@ -162,5 +162,5 @@
                 document.getElementById('shippingCostInput').value = shippingCost.toFixed(2);
             }
         </script>
-    </body>
+    </div>
 @endsection
