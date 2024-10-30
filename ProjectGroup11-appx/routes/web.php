@@ -5,6 +5,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\RatingController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -47,6 +49,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/completed', [ProfileController::class, 'Order_completed'])->name('profile.Order_completed');
     Route::get('/profile/cancelled', [ProfileController::class, 'Order_cancelled'])->name('profile.Order_cancelled');
 
+    
+    
+    
+    
     // Route::get('/profile/orders', [OrderController::class, 'index'])->name('profile.orders.index');
     // Route::get('/profile/orders/pending', [OrderController::class, 'pending'])->name('profile.orders.pending');
     // Route::get('/profile/orders/completed', [OrderController::class, 'completed'])->name('profile.orders.completed');
@@ -55,6 +61,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/orders/more/{allOrderId}', [OrderController::class, 'getOrdersByAllOrderId'])->name('profile.orders.seemore');
     Route::post('/orders/action/{id}', [OrderController::class, 'action'])->name('profile.orders.seemore.update');
 });
+
+
+Route::get('/ratings/create/{product}', [RatingController::class, 'create'])->name('ratings.create');
+Route::post('/ratings/{product}', [RatingController::class, 'store'])->name('ratings.store');
+
+
 
 
 Route::fallback(function () {
@@ -100,3 +112,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/resetpassword', [ProfileController::class, 'resetPasswordForm'])->name('profile.resetpassword');
     Route::post('/profile/resetpassword', [ProfileController::class, 'resetPassword'])->name('profile.resetpassword.update');
 });
+
+
