@@ -42,7 +42,7 @@
                             </svg>
                             <h1>{{ Auth::user()->name }}</h1>
                         </button>
-                        <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1">
+                        <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-gray-100 rounded-md shadow-lg py-1">
                             <a href="/profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf

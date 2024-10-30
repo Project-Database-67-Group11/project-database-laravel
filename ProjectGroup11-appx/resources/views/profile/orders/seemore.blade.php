@@ -125,13 +125,14 @@
                                             @if ($order->status == 'pending')
                                                 <span class="bg-blue-100 text-blue-700 px-2 rounded-full ">pending</span>
                                             @elseif ($order->status == 'completed')
-                                                <span class="bg-green-100 text-green-700 px-2 rounded-full ">completed</span>
+                                                <span
+                                                    class="bg-green-100 text-green-700 px-2 rounded-full ">completed</span>
                                             @elseif ($order->status == 'cancelled')
                                                 <span class="bg-red-100 text-red-700 px-2 rounded-full ">cancelled</span>
                                             @endif
                                         </p>
                                         <div class="flex items-end gap-2">
-                                            รวมการสั่งซื้อ <p class="text-orange-500 text-xl font-bold">
+                                            ราคารวมค่าส่งและภาษี <p class="text-orange-500 text-xl font-bold">
                                                 ฿{{ number_format($order->total_price, 2) }}</p>
                                         </div>
                                     </div>
@@ -156,7 +157,7 @@
                                             <!-- Add Review Button -->
                                             @if ($order->status == 'completed')
                                                 <div class="flex items-center h-full pl-5">
-                                                    <a href="#"
+                                                    <a href="{{ route('ratings.create', $order->order_id) }}"
                                                         class="h-full flex items-center justify-center aspect-square bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
                                                         รีวิวสินค้า
                                                     </a>

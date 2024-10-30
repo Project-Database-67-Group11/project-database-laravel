@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id('review_id');  // Primary key
             $table->foreignId('user_information_id')->constrained('users_information', 'user_information_id')->onDelete('cascade');  // Foreign key referencing users_information table
             $table->foreignId('product_id')->constrained('products', 'product_id')->onDelete('cascade');  // Foreign key referencing products table
+            $table->foreignId('order_id')->constrained('orders', 'order_id')->onDelete('cascade'); 
+            $table->integer('rate');
             $table->text('comment');
             $table->timestamps();
-        });
+        }); 
     }
 
     /**

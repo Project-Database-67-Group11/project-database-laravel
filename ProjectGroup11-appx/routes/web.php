@@ -5,8 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\RatingController;
-
+use App\Http\Controllers\ReviewController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -63,11 +62,10 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/ratings/create/{product}', [RatingController::class, 'create'])->name('ratings.create');
-Route::post('/ratings/{product}', [RatingController::class, 'store'])->name('ratings.store');
-
-
-
+Route::middleware('auth')->group(function () {
+    Route::get('/reviews/create/{order}', [ReviewController::class, 'create'])->name('ratings.create');
+    Route::post('/reviews/{order_id}', [ReviewController::class, 'submitReview'])->name('ratings.submitReview');
+});
 
 Route::fallback(function () {
     return "<h1>wwwww</h1>";

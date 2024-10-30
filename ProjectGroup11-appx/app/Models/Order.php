@@ -29,5 +29,10 @@ class Order extends Model
     {
         return $this->belongsTo(Product::class, 'product_id');
     }
-    
+
+    // Define the relationship with Review (One-to-One)
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'order_id', 'order_id');
+    }
 }

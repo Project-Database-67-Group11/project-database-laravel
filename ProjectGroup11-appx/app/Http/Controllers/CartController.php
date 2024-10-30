@@ -9,20 +9,6 @@ use App\Models\UserInformation;
 
 class CartController extends Controller
 {
-    public function showCart()
-    {
-        $product = Product::find(1);
-
-        if (!$product) {
-            return redirect()->back()->with('error', 'Product not found.');
-        }
-
-        $cart = session()->get('cart', []);
-        $quantity = $cart[$product->id]['quantity'] ?? 1;
-
-        return view('cart', compact('product', 'quantity'));
-    }
-
     public function update(Request $request, $productId)
     {
         $userInformation = UserInformation::where('user_id', auth()->id())->first();
