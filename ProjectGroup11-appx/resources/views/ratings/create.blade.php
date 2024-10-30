@@ -76,12 +76,20 @@
                         {{-- Display Rating as Stars --}}
                         <div class="mb-4 flex items-center space-x-5">
                             <label class="block mb-1"><strong>คะแนน</strong></label>
-                            <div class="rating rating-lg">
+                            {{-- <div class="rating rating-lg">
                                 @for ($i = 1; $i <= 5; $i++)
                                     <input type="radio" name="rate"
                                         class="mask mask-star-2 bg-orange-400 checked:bg-orange-400"
                                         id="read-only-rate-{{ $i }}" value="{{ $i }}"
                                         {{ $review->rate == $i ? 'checked' : '' }} disabled />
+                                @endfor
+                            </div> --}}
+                            {{-- Displaying the rating --}}
+                            <div class="flex items-center">
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <svg class="w-5 h-5 {{ $i <= $review->rate ? 'text-orange-400' : 'text-gray-300' }}" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.385 4.287a1 1 0 00.95.69h4.506c.969 0 1.371 1.24.588 1.81l-3.64 2.637a1 1 0 00-.364 1.118l1.385 4.287c.3.921-.755 1.688-1.54 1.118L10 14.347l-3.64 2.637c-.784.57-1.838-.197-1.54-1.118l1.385-4.287a1 1 0 00-.364-1.118L2.858 9.714c-.784-.57-.38-1.81.588-1.81h4.506a1 1 0 00.95-.69l1.385-4.287z" />
+                                    </svg>
                                 @endfor
                             </div>
                         </div>
@@ -103,23 +111,20 @@
                         {{-- Rate --}}
                         <div class="mb-4">
                             <label class="block mb-1">คะแนน</label>
-                            <div class="rating rating-lg">
-                                <input type="radio" name="rate"
-                                    class="mask mask-star-2 bg-orange-400 checked:bg-orange-400" id="rate-1"
-                                    value="1" {{ $review && $review->rate == 1 ? 'checked' : '' }} />
-                                <input type="radio" name="rate"
-                                    class="mask mask-star-2 bg-orange-400 checked:bg-orange-400" id="rate-2"
-                                    value="2" {{ $review && $review->rate == 2 ? 'checked' : '' }} />
-                                <input type="radio" name="rate"
-                                    class="mask mask-star-2 bg-orange-400 checked:bg-orange-400" id="rate-3"
-                                    value="3" {{ $review && $review->rate == 3 ? 'checked' : '' }} />
-                                <input type="radio" name="rate"
-                                    class="mask mask-star-2 bg-orange-400 checked:bg-orange-400" id="rate-4"
-                                    value="4" {{ $review && $review->rate == 4 ? 'checked' : '' }} />
-                                <input type="radio" name="rate"
-                                    class="mask mask-star-2 bg-orange-400 checked:bg-orange-400" id="rate-5"
-                                    value="5" {{ $review && $review->rate == 5 ? 'checked' : 'checked' }} />
+                            <div class="flex space-x-1 rating">
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <label>
+                                        <input type="radio" name="rate" value="{{ $i }}" class="hidden rate-input"
+                                               {{ $review && $review->rate == $i ? 'checked' : '' }} />
+                                        <svg data-value="{{ $i }}" onclick="setRating({{ $i }})"
+                                             class="w-8 h-8 cursor-pointer star {{ $i <= ($review->rate ?? 0) ? 'text-orange-400' : 'text-gray-300' }}" 
+                                             fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.385 4.287a1 1 0 00.95.69h4.506c.969 0 1.371 1.24.588 1.81l-3.64 2.637a1 1 0 00-.364 1.118l1.385 4.287c.3.921-.755 1.688-1.54 1.118L10 14.347l-3.64 2.637c-.784.57-1.838-.197-1.54-1.118l1.385-4.287a1 1 0 00-.364-1.118L2.858 9.714c-.784-.57-.38-1.81.588-1.81h4.506a1 1 0 00.95-.69l1.385-4.287z" />
+                                        </svg>
+                                    </label>
+                                @endfor
                             </div>
+                            
                         </div>
 
 
@@ -139,4 +144,26 @@
 
         </div>
     </div>
+    <script>
+        function setRating(value) {
+            document.querySelectorAll('.rate-input').forEach(input => {
+                input.checked = (input.value == value);
+            });
+            
+            document.querySelectorAll('.star').forEach(star => {
+                if (star.getAttribute('data-value') <= value) {
+                    star.classList.add('text-orange-400');
+                    star.classList.remove('text-gray-300');
+                } else {
+                    star.classList.add('text-gray-300');
+                    star.classList.remove('text-orange-400');
+                }
+            });
+        }
+    
+        // Set default rating to 5 stars on page load
+        document.addEventListener("DOMContentLoaded", function() {
+            setRating(5);
+        });
+    </script>
 @endsection

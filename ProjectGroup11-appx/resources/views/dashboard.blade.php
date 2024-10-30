@@ -4,7 +4,7 @@
 
 <div class="w-full flex justify-center items-center mb-10">
     <!-- Main Content -->
-    <div class="mt-[4.375rem] w-[80%]">
+    <div class="mt-[4.375rem] w-[80%] mb-20">
         <!-- Trending Items Section -->
         <section class="bg-[#ffffff] p-5 rounded-lg shadow-xl">
             <h2 class="text-2xl font-semibold mb-6">Trending Items</h2>

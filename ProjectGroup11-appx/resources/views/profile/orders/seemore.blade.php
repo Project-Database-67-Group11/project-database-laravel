@@ -156,9 +156,9 @@
                                             </div>
                                             <!-- Add Review Button -->
                                             @if ($order->status == 'completed')
-                                                <div class="flex items-center h-full pl-5 mt-14">
+                                                <div class="flex items-end justify-center h-full ml-5">
                                                     <a href="{{ route('ratings.create', $order->order_id) }}"
-                                                        class="h-[60px] w-[100px] flex items-center justify-center aspect-square bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
+                                                        class="bg-blue-600 text-white px-2 py-1  rounded-lg hover:bg-blue-700 transition-colors duration-200">
                                                         รีวิวสินค้า
                                                     </a>
                                                 </div>
