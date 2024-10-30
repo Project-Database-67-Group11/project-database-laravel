@@ -45,7 +45,7 @@
                     <h1 class="pl-4">การซื้อของฉัน</h1>
                 </div>
                 <div class="space-y-6 ml-10 my-4 flex flex-col gap-[1px]">
-                    <a href="{{ route('profile.Order_index') }}" class="text-orange-500">
+                    <a href="{{ route('profile.Order_index') }}" class="">
                         <h1>ทั้งหมด</h1>
                     </a>
                     <a href="{{ route('profile.Order_pending') }}" class="">
@@ -156,15 +156,9 @@
                                             </div>
                                             <!-- Add Review Button -->
                                             @if ($order->status == 'completed')
-<<<<<<< Updated upstream
-                                                <div class="flex items-center h-full pl-5">
-                                                    <a href="{{ route('ratings.create', $order->order_id) }}"
-                                                        class="h-full flex items-center justify-center aspect-square bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
-=======
                                                 <div class="flex items-center h-full pl-5 mt-14">
-                                                    <a href="#"
+                                                    <a href="{{ route('ratings.create', $order->order_id) }}"
                                                         class="h-[60px] w-[100px] flex items-center justify-center aspect-square bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
->>>>>>> Stashed changes
                                                         รีวิวสินค้า
                                                     </a>
                                                 </div>
