@@ -82,7 +82,7 @@
                                                     @csrf
                                                     <input type="hidden" name="action" value="cancel">
                                                     <button type="submit"
-                                                        class="bg-gray-400 px-3 rounded-md text-white">ยกเลิก</button>
+                                                        class="bg-gray-400 px-3 py-1 rounded-xl text-white">ยกเลิก</button>
                                                 </form>
 
                                                 <!-- For Complete Button -->
@@ -156,9 +156,9 @@
                                             </div>
                                             <!-- Add Review Button -->
                                             @if ($order->status == 'completed')
-                                                <div class="flex items-center h-full pl-5">
+                                                <div class="flex items-center h-full pl-5 mt-14">
                                                     <a href="{{ route('ratings.create', $order->order_id) }}"
-                                                        class="h-full flex items-center justify-center aspect-square bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
+                                                        class="h-[60px] w-[100px] flex items-center justify-center aspect-square bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
                                                         รีวิวสินค้า
                                                     </a>
                                                 </div>

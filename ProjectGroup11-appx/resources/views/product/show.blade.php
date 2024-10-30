@@ -3,10 +3,11 @@
 @section('content')
     <div class="w-full flex justify-center items-center">
         <div class="mt-[4.375rem] w-[80%] grid grid-cols-3 gap-6">
-            <div class="bg-white shadow-md p-10 rounded-xl aspect-square">
+            <div class="bg-white h-full  shadow-md p-10 rounded-xl aspect-square">
                 <img src="{{ $product->product_img }}" alt="{{ $product->product_name }}"
                     class="rounded-xl object-cover object-center h-full w-full">
             </div>
+
             <div class="bg-white shadow-md col-span-2 rounded-xl p-10 space-y-10">
                 <h1 class="text-3xl font-bold">{{ $product->product_name }}</h1>
                 <p class="text-md opacity-70">{{ $product->product_description }}</p>
