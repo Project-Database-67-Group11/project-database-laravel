@@ -31,41 +31,56 @@
                     </button>
                 </form>
             </div>
+
         </div>
-        <script>
-            function showAlert() {
-                // ดึงชื่อสินค้า
-                const productName = "{{ $product->product_name }}";
-                // ดึงจำนวนที่ผู้ใช้เลือก
-                const quantity = document.getElementById('quantity').value;
 
-                // แสดง alert
-                alert("เพิ่มสินค้า: " + productName + " จำนวน: " + quantity);
-
-                // คืนค่า true เพื่อให้ฟอร์มถูกส่ง
-                return true;
-            }
-
-            document.addEventListener('DOMContentLoaded', function() {
-                let quantityInput = document.getElementById('quantity');
-                let maxQuantity = parseInt(quantityInput.max);
-
-                quantityInput.addEventListener('input', function() {
-                    let value = parseInt(this.value);
-
-                    if (value > maxQuantity) {
-                        this.value = maxQuantity;
-                    }
-
-                    if (value < 1 || isNaN(value)) {
-                        this.value = 1;
-                    }
-                });
-
-                quantityInput.addEventListener('paste', function(event) {
-                    event.preventDefault();
-                });
-            });
-        </script>
     </div>
+    <div class="w-full flex justify-center items-center">
+        <div class="w-[80%] bg-white shadow-md p-10 rounded-xl my-10 space-y-2">
+            <h2 class="text-lg font-bold">คะแนนของสินค้า</h2>
+
+
+            @if ($product->reviews->isEmpty())
+                <p class="text-gray-500">ไม่มีรีวิว</p>
+            @else
+                @foreach ($product->reviews as $review)
+                    {{-- <div class="bg-white p-4 mb-2 rounded shadow">
+                        @if ($review->userInformation && $review->userInformation->user)
+                            <p><strong>ผู้ใช้:</strong> {{ $review->userInformation->user->name }}</p>
+                        @else
+                            <p><strong>ผู้ใช้:</strong> ไม่ระบุชื่อ</p>
+                        @endif
+                        <p><strong>คะแนน:</strong> {{ $review->rate }}</p>
+                        <p><strong>ความคิดเห็น:</strong> {{ $review->comment }}</p>
+                    </div> --}}
+                    <div>
+                        {{-- Name --}}
+                        <div class="space-y-1 text-gray-700">
+                            @if ($review->userInformation && $review->userInformation->user)
+                                <p>คุณ {{ $review->userInformation->user->name }}</p>
+                            @else
+                                <p>>คุณ ไม่ระบุชื่อ</p>
+                            @endif
+                    
+                            <p class="opacity-60">{{ $review->created_at }}</p>
+                    
+                            {{-- Displaying the rating --}}
+                            <div class="flex items-center">
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <svg class="w-5 h-5 {{ $i <= $review->rate ? 'text-orange-400' : 'text-gray-300' }}" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.385 4.287a1 1 0 00.95.69h4.506c.969 0 1.371 1.24.588 1.81l-3.64 2.637a1 1 0 00-.364 1.118l1.385 4.287c.3.921-.755 1.688-1.54 1.118L10 14.347l-3.64 2.637c-.784.57-1.838-.197-1.54-1.118l1.385-4.287a1 1 0 00-.364-1.118L2.858 9.714c-.784-.57-.38-1.81.588-1.81h4.506a1 1 0 00.95-.69l1.385-4.287z" />
+                                    </svg>
+                                @endfor
+                            </div>
+                    
+                            <p class="mt-2">{{ $review->comment }}</p>
+                            <hr class="py-1">
+                        </div>
+                    </div>
+                    
+                @endforeach
+            @endif
+        </div>
+    </div>
+
 @endsection

@@ -15,9 +15,11 @@ Route::get('/hello', function () {
     return "<h1>Welcome</h1>";
 });
 
-Route::get('/checkout', function () {
-    return view('checkout.checkout');
-})->name('checkout.checkout');
+Route::middleware('auth')->group(function () {
+    Route::get('/checkout', function () {
+        return view('checkout.checkout');
+    })->name('checkout.checkout');
+});
 
 // Route::get('/cart', function () {
 //     return view('cart.cart');
@@ -87,23 +89,30 @@ Route::get('/add-product', [ProductController::class, 'addProduct']);
 
 
 // show product
-Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
+Route::middleware('auth')->group(function () {
+    Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
+});
 
 
 // Cart
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add')->middleware('auth');
-Route::delete('/cart/removed', [CartController::class, 'removed'])->name('cart.removed');
-Route::post('/cart/update/{product_id}', [CartController::class, 'update'])->name('cart.update');
+Route::middleware('auth')->group(function () {
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add')->middleware('auth');
+    Route::delete('/cart/removed', [CartController::class, 'removed'])->name('cart.removed');
+    Route::post('/cart/update/{product_id}', [CartController::class, 'update'])->name('cart.update');
+});
+
 
 // CheckOut
-Route::post('/place-order', [OrderController::class, 'placeOrder'])->name('cart.placeOrder');
+Route::middleware('auth')->group(function () {
+    Route::get('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+    Route::post('/place-order', [OrderController::class, 'placeOrder'])->name('cart.placeOrder');
+});
 
 Route::get('/information', function () {
     return view('profile.orders.seeMore');
 });
 
-Route::get('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 require __DIR__ . '/auth.php';
 
 Route::middleware('auth')->group(function () {

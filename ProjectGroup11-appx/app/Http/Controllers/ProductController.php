@@ -29,11 +29,11 @@ class ProductController extends Controller
     public function show($id)
     {
         // ดึงข้อมูลสินค้าจากฐานข้อมูลตาม product_id
-        $product = Product::where('product_id', $id)->firstOrFail();
-
-        // ส่งข้อมูลสินค้าไปยัง view ที่จะทำการแสดง
+        $product = Product::with('reviews')->where('product_id', $id)->firstOrFail();
+    
+        // ส่งข้อมูลสินค้าและรีวิวไปยัง view ที่จะทำการแสดง
         return view('product.show', compact('product'));
-    }
+    }    
 
     public function showTrendingProducts()
     {

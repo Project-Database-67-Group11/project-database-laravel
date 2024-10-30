@@ -24,6 +24,11 @@ class Review extends Model
         return $this->belongsTo(User::class, 'user_information_id');
     }
 
+    public function userInformation()
+    {
+        return $this->belongsTo(UserInformation::class, 'user_information_id');
+    }
+
     // Define the relationship with Product (Many-to-One)
     public function product()
     {

@@ -29,5 +29,8 @@ class UserInformation extends Model
         return $this->belongsTo(User::class);
     }
 
-
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'user_information_id');
+    }
 }
