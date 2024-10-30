@@ -30,22 +30,60 @@ class ProductController extends Controller
     {
         // ดึงข้อมูลสินค้าจากฐานข้อมูลตาม product_id
         $product = Product::with('reviews')->where('product_id', $id)->firstOrFail();
-    
+
         // ส่งข้อมูลสินค้าและรีวิวไปยัง view ที่จะทำการแสดง
         return view('product.show', compact('product'));
-    }    
+    }
 
-    public function showTrendingProducts()
+    // แสดงสินค้าทั้งหมด
+    public function showAllProducts(Request $request)
     {
-        $trendingProducts = Order::select('product_id', \DB::raw('COUNT(product_id) as order_count'))
-            ->groupBy('product_id')
-            ->orderByDesc('order_count')
-            ->take(4) // Get the top 4 trending products
-            ->get();
+        // Start with all products
+        $query = Product::query();
+    
+        // Check if a product type is specified for filtering
+        if ($request->filled('type')) {
+            $query->where('product_type', $request->input('type'));
+        }
+    
+        // Apply sorting if specified
+        if ($request->filled('sort')) {
+            $sortOption = explode(',', $request->input('sort'));
+            $query->orderBy($sortOption[0], $sortOption[1]);
+        }
+    
+        // Fetch the products based on the query
+        $products = $query->get();
+    
+        return view('dashboard', compact('products'));
+    }
+    
 
-        // Now, retrieve product details for each trending product
-        $products = Product::whereIn('product_id', $trendingProducts->pluck('product_id'))->get();
-
+    public function sort(Request $request)
+    {
+        // รับค่าการเรียงลำดับจากคำขอ
+        $sortOption = explode(',', $request->input('sort', 'product_name,asc'));
+        $sortColumn = $sortOption[0]; // คอลัมน์ที่ใช้เรียงลำดับ
+        $sortDirection = $sortOption[1]; // ทิศทางการเรียงลำดับ
+    
+        // กำหนดคอลัมน์ที่สามารถเรียงลำดับได้
+        $validSortColumns = ['product_name', 'product_price'];
+    
+        // ตรวจสอบให้แน่ใจว่าคอลัมน์ที่ใช้เรียงลำดับถูกต้อง
+        if (!in_array($sortColumn, $validSortColumns)) {
+            $sortColumn = 'product_name'; // ค่าดีฟอลต์
+        }
+    
+        // ตรวจสอบให้แน่ใจว่าทิศทางการเรียงลำดับถูกต้อง
+        $validSortDirections = ['asc', 'desc'];
+        if (!in_array($sortDirection, $validSortDirections)) {
+            $sortDirection = 'asc'; // ค่าดีฟอลต์
+        }
+    
+        // ดึงข้อมูลสินค้าจากฐานข้อมูลและเรียงลำดับ
+        $products = Product::orderBy($sortColumn, $sortDirection)->get();
+    
+        // ส่งข้อมูลไปยังวิว
         return view('dashboard', compact('products'));
     }
 }

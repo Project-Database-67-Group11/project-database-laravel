@@ -25,9 +25,17 @@ Route::middleware('auth')->group(function () {
 //     return view('cart.cart');
 // })->name('cart.cart');
 
-Route::get('/store', [ProductController::class, 'showTrendingProducts'])
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    // เส้นทางสำหรับแสดงสินค้าทั้งหมด
+    Route::get('/store', [ProductController::class, 'showAllProducts'])
+        ->middleware(['verified'])
+        ->name('dashboard');
+
+    // เส้นทางสำหรับการเรียงสินค้า
+    Route::get('/store/sort', [ProductController::class, 'sort'])
+        ->name('products.sort'); // ใช้เส้นทางนี้ในการเรียงสินค้า
+});
 // Route::get('/store', function () {
 //     return "<h1>Welcome to store</h1>";
 // });
@@ -50,10 +58,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/completed', [ProfileController::class, 'Order_completed'])->name('profile.Order_completed');
     Route::get('/profile/cancelled', [ProfileController::class, 'Order_cancelled'])->name('profile.Order_cancelled');
 
-    
-    
-    
-    
+
+
+
+
     // Route::get('/profile/orders', [OrderController::class, 'index'])->name('profile.orders.index');
     // Route::get('/profile/orders/pending', [OrderController::class, 'pending'])->name('profile.orders.pending');
     // Route::get('/profile/orders/completed', [OrderController::class, 'completed'])->name('profile.orders.completed');
@@ -119,5 +127,3 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/resetpassword', [ProfileController::class, 'resetPasswordForm'])->name('profile.resetpassword');
     Route::post('/profile/resetpassword', [ProfileController::class, 'resetPassword'])->name('profile.resetpassword.update');
 });
-
-
