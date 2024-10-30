@@ -44,6 +44,8 @@
         <main>
             @yield('content')
         </main>
+
+        @include('layouts.copyright')
     </div>
 </body>
 
