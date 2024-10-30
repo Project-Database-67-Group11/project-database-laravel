@@ -35,7 +35,7 @@
         </div>
 
     </div>
-    <div class="w-full flex justify-center items-center mb-5">
+    <div class="w-full flex justify-center items-center">
         <div class="w-[80%] bg-white shadow-md p-10 rounded-xl my-10 space-y-2">
             @php
                 $averageRating = $product->reviews->count() > 0 ? $product->reviews->avg('rate') : 0;
