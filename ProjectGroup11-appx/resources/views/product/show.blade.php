@@ -3,7 +3,7 @@
 @section('content')
     <div class="w-full flex justify-center items-center">
         <div class="mt-[4.375rem] w-[80%] grid grid-cols-3 gap-6">
-            <div class="bg-white shadow-md p-10 rounded-xl aspect-square">
+            <div class="bg-white h-full w-[100%] shadow-md p-10 rounded-xl aspect-square">
                 <img src="{{ $product->product_img }}" alt="{{ $product->product_name }}"
                     class="rounded-xl object-cover object-center h-full w-full">
             </div>
@@ -26,7 +26,7 @@
                     </div>
 
                     <button type="submit"
-                        class="bottom-0 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                        class="bottom-0 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mb-5">
                         Add to Cart
                     </button>
                 </form>
@@ -35,9 +35,20 @@
         </div>
 
     </div>
-    <div class="w-full flex justify-center items-center">
+    <div class="w-full flex justify-center items-center mb-5">
         <div class="w-[80%] bg-white shadow-md p-10 rounded-xl my-10 space-y-2">
-            <h2 class="text-lg font-bold">คะแนนของสินค้า</h2>
+            @php
+                $averageRating = $product->reviews->count() > 0 ? $product->reviews->avg('rate') : 0;
+            @endphp
+            <div class="flex flex-row items-start justify-start gap-2">
+                <h2 class="text-xl font-bold">
+                    {{ number_format($averageRating, 1) }} 
+                </h2>
+                <svg class="w-5 h-5 text-orange-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.385 4.287a1 1 0 00.95.69h4.506c.969 0 1.371 1.24.588 1.81l-3.64 2.637a1 1 0 00-.364 1.118l1.385 4.287c.3.921-.755 1.688-1.54 1.118L10 14.347l-3.64 2.637c-.784.57-1.838-.197-1.54-1.118l1.385-4.287a1 1 0 00-.364-1.118L2.858 9.714c-.784-.57-.38-1.81.588-1.81h4.506a1 1 0 00.95-.69l1.385-4.287z" />
+                </svg>
+                <h2 class="text-lg font-medium">คะแนนของสินค้า ({{ $product->reviews->count() }})</h2>
+            </div>
 
 
             @if ($product->reviews->isEmpty())

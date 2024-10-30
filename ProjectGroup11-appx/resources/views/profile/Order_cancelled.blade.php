@@ -12,7 +12,7 @@
                             d="M0 96l576 0c0-35.3-28.7-64-64-64L64 32C28.7 32 0 60.7 0 96zm0 32L0 416c0 35.3 28.7 64 64 64l448 0c35.3 0 64-28.7 64-64l0-288L0 128zM64 405.3c0-29.5 23.9-53.3 53.3-53.3l117.3 0c29.5 0 53.3 23.9 53.3 53.3c0 5.9-4.8 10.7-10.7 10.7L74.7 416c-5.9 0-10.7-4.8-10.7-10.7zM176 192a64 64 0 1 1 0 128 64 64 0 1 1 0-128zm176 16c0-8.8 7.2-16 16-16l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16zm0 64c0-8.8 7.2-16 16-16l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16zm0 64c0-8.8 7.2-16 16-16l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16z" />
                     </svg>
                 </div>
-                <div class="flex items-center justify-center">
+                <div class="flex items-center justify-center text-xl">
                     {{ Auth::user()->name }}
                 </div>
             </div>
@@ -67,7 +67,7 @@
                     <p class="text-lg text-gray-600">ยังไม่มีคำสั่งสินค้าที่ถูกยกเลิก</p>
                 </div>
             @else
-            <div class="w-full bg-gray-50">
+            <div class="w-full">
                 <div class="">
                     <input type="text" class="w-full p-3 rounded-lg border border-gray-300" placeholder="ค้นหาโดยใช้ชื่อสินค้า" />
                 </div>
@@ -107,7 +107,7 @@
                                         </div>
                                     </div>
                                     <div class="flex items-center justify-center">
-                                        <a href="{{ route('profile.orders.seemore', ['allOrderId' => $order->all_order_id]) }}" class="">
+                                        <a href="{{ route('profile.orders.seemore', ['allOrderId' => $order->all_order_id]) }}" class="hover:text-orange-500 hover:font-bold">
                                             ดูเพิ่มเติม
                                         </a>
                                     </div>
