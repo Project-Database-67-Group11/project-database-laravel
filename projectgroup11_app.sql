@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2024 at 06:21 PM
+-- Generation Time: Oct 30, 2024 at 08:10 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.3.13
 
@@ -147,7 +147,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (29, '2024_10_02_144850_create_products_table', 1),
 (30, '2024_10_02_144855_create_carts_table', 1),
 (31, '2024_10_02_144859_create_orders_table', 1),
-(32, '2024_10_02_144903_create_reviews_table', 1);
+(32, '2024_10_02_144903_create_reviews_table', 1),
+(34, '2024_10_03_144903_create_reviews_table', 2);
 
 -- --------------------------------------------------------
 
@@ -183,7 +184,8 @@ INSERT INTO `orders` (`order_id`, `product_id`, `user_information_id`, `date`, `
 (39, 12, 1, '2024-10-29', 1, 1924.96, '2024-10-29 10:35:19', '2024-10-29 10:59:25', 'cancelled', 'cash', 'normal', 3, 'Autsada Wiriya, 0999999999, 1234 m.3 ABCB WASD ChiangMai'),
 (40, 3, 1, '2024-10-29', 1, 23089.89, '2024-10-29 11:10:59', '2024-10-29 11:12:05', 'cancelled', 'cash', 'normal', 4, 'Autsada Wiriya, 0999999999, 1234 m.3 ABCB WASD ChiangMai'),
 (41, 5, 1, '2024-10-29', 2, 23089.89, '2024-10-29 11:10:59', '2024-10-29 11:12:05', 'cancelled', 'cash', 'normal', 4, 'Autsada Wiriya, 0999999999, 1234 m.3 ABCB WASD ChiangMai'),
-(42, 18, 1, '2024-10-29', 1, 23089.89, '2024-10-29 11:10:59', '2024-10-29 11:12:05', 'cancelled', 'cash', 'normal', 4, 'Autsada Wiriya, 0999999999, 1234 m.3 ABCB WASD ChiangMai');
+(42, 18, 1, '2024-10-29', 1, 23089.89, '2024-10-29 11:10:59', '2024-10-29 11:12:05', 'cancelled', 'cash', 'normal', 4, 'Autsada Wiriya, 0999999999, 1234 m.3 ABCB WASD ChiangMai'),
+(65, 14, 1, '2024-10-30', 10, 3762.50, '2024-10-30 01:06:21', '2024-10-30 01:07:24', 'completed', 'cash', 'fast', 5, 'Autsada Wiriya, 0999999999, 1234 m.3 ABCB WASD ChiangMai');
 
 -- --------------------------------------------------------
 
@@ -231,9 +233,9 @@ INSERT INTO `products` (`product_id`, `product_name`, `product_description`, `pr
 (9, 'Vitamin A 25000iu', 'วิตามินที่ช่วยรักษาสุขภาพของดวงตา และช่วยเสริมภูมิคุ้มกัน ต้านอนุมูลอิสระ ใครที่ใช้ดวงตาเยอะ ไม่ว่าจะทำงาน หรืออ่านหนังสือเยอะ ควรมีติดกระเป๋าไว้\n✓  Vitamin A 7,500 mcg. (25,000 IU)*\n✓  บำรุงสายตา\n✓  ช่วยต่อต้าน อนุมูลอิสระ\n✓  ช่วยเสริมภูมิคุ้มกันให้กับร่างกาย\n✓  ช่วยบำรุงสุขภาพผิว ต่อสู้สิว\n✓  ป้องกันเลือดออกตามไรฟัน', 'https://bucket.fitwhey.com/products/7f4afd2a0f5165c6b8a3ef6914edede7.webp', 299.00, 456, 'Vitamin', '2024-10-19 02:17:19', '2024-10-19 02:17:19'),
 (10, 'Vitamin E 400iu', 'อีกหนึ่งวิตามินที่ช่วยเรื่องความงาม และการต้านอนุมูลอิสระ เพื่อให้เราแข็งแรงทั้งภายใน และ ภายนอก พร้อมต่อสู้กับมลภาวะต่างๆที่จะต้องเจอในแต่ละวันได้อย่างมั่งใจ\n✓  Vitamin E 400 IU ต่อเม็ด\n✓  ช่วยบำรุงสุขภาพผิวให้แข็งแรง\n✓  ช่วยต่อต้าน อนุมูลอิสระ\n✓  ช่วยเสริมความแข็งแรงของเซลล์ในร่างกาย\n✓  บรรเทาอาการตะคริว', 'https://bucket.fitwhey.com/ProductType/5c3360dbaf8bc39d05e0e13d63cf48df.webp', 299.00, 456, 'Vitamin', '2024-10-19 02:17:19', '2024-10-19 02:17:19'),
 (11, 'Vitamin C 1000MG', 'วิตามินยอดนิยม ที่มีประโยชน์ต่อร่างกายมากมาย และ เป็นวิตามินที่จำเป็นมากในช่วงที่มีโรคภัย และไวรัสมากมายที่เราต้องต่อสู้ในทุกๆวัน ต้องมีติดกระเป๋าไว้ ขาดไม่ได้!!\n✓  Vitamin C 1,000 mg.*\n✓  เสริมด้วย Rose Hip 25 mg.*\n✓  ช่วยเสริมภูมิคุ้มกันให้กับร่างกาย\n✓  ช่วยต่อต้าน อนุมูลอิสระ\n✓  ช่วยบำรุงสุขภาพผิว ให้แข็งแรง และอ่อนวัย\n✓  ป้องกันเลือดออกตามไรฟัน', 'https://bucket.fitwhey.com/ProductType/75920760885640001689fdeb810b32ce.webp', 299.00, 456, 'Vitamin', '2024-10-19 02:17:19', '2024-10-19 02:17:19'),
-(12, 'SHAKER BLACK SERIES', 'SHAKER BLACK SERIES', 'https://bucket.fitwhey.com/ProductType/6f4f21c0db8b4d6b02d170ed391e5aa1.webp', 299.00, 456, 'SHAKER', '2024-10-19 02:17:19', '2024-10-19 02:17:19'),
+(12, 'SHAKER BLACK SERIES', 'SHAKER BLACK SERIES', 'https://bucket.fitwhey.com/ProductType/6f4f21c0db8b4d6b02d170ed391e5aa1.webp', 299.00, 455, 'SHAKER', '2024-10-19 02:17:19', '2024-10-30 01:03:43'),
 (13, 'Shaker Spider Bottle', 'NEW FITWHEY SPIDER BOTTLE\nFitwhey Shaker ลุคใหม่ พกพาสะดวกใช้งานง่าย จุได้เต็มที่ จบได้ในแก้วเดียว\n\n3 Layers (Shaker ประกอบด้วย 3 ชั้น)\n\nชั้นแรก แก้ว Shaker สามารถใช้ใส่เวย์โปรตีน หรือ อาหารเสริมต่างๆผสมน้ำพร้อมดื่มได้ทันที\nชั้นสอง ช่องใส่วิตามินต่างๆ\nชั้นสาม ช่องใส่ผงโปรตีน และอาหารเสริมต่างๆเพื่อให้ง่ายต่อการพกพาไปได้ทุกที่ \nผลิตจากวัสดุ Food Grade PP \nขนาด 500ML\nBPA FREE', 'https://bucket.fitwhey.com/ProductType/c1df650d3dbd40bcfd9e0152f831b376.webp', 250.00, 4596, 'SHAKER', '2024-10-19 02:17:19', '2024-10-19 02:17:19'),
-(14, 'Stainless Steel Shaker Bottle', 'มาแล้ว FITWHEY SHAKER โฉมใหม่ !!! รุ่น Stainless Steel 1 Layer Shaker Bottle\nลุคใหม่ รูปทรงทันสมัย แข็งแรง ทนทาน ไม่แตกหักง่าย\n\nปากฝาขนาดใหญ่ เทใส่เวย์สะดวก ไม่หก\nฝาปิดเกลียว แน่นหนา ไม่รั่ว\nมีตะแกรงช่วยละลาย เพื่อให้ผงเวย์ ผสมกับน้ำได้ดียิ่งขึ้น\nใหญ่สะใจ จุได้ 25 oz\nขนาดพอดี น้ำหนักเบา พกพาง่าย\nBPA FREE!!', 'https://bucket.fitwhey.com/ProductType/d2db57d0bc514f955d6f7b7de169ae55.webp', 350.00, 456, 'SHAKER', '2024-10-19 02:17:19', '2024-10-19 02:17:19'),
+(14, 'Stainless Steel Shaker Bottle', 'มาแล้ว FITWHEY SHAKER โฉมใหม่ !!! รุ่น Stainless Steel 1 Layer Shaker Bottle\nลุคใหม่ รูปทรงทันสมัย แข็งแรง ทนทาน ไม่แตกหักง่าย\n\nปากฝาขนาดใหญ่ เทใส่เวย์สะดวก ไม่หก\nฝาปิดเกลียว แน่นหนา ไม่รั่ว\nมีตะแกรงช่วยละลาย เพื่อให้ผงเวย์ ผสมกับน้ำได้ดียิ่งขึ้น\nใหญ่สะใจ จุได้ 25 oz\nขนาดพอดี น้ำหนักเบา พกพาง่าย\nBPA FREE!!', 'https://bucket.fitwhey.com/ProductType/d2db57d0bc514f955d6f7b7de169ae55.webp', 350.00, 446, 'SHAKER', '2024-10-19 02:17:19', '2024-10-30 01:06:21'),
 (15, 'BAAM HOME TREADMILL', 'ขนาดเครื่อง กว้าง x ยาว x สูง : 700 x 1500 x 1200 mm.\nพื้นที่สายพาน กว้าง x ยาว : 420 x 1250 mm.\nน้ำหนักเครื่องโดยประมาณ : 60 KG.\nRun Board Thickness : 15 mm.\nMotor : DC 2 HP\nSpeed (ระดับความเร็ว) : 1 - 14 Km/Hr.\nIncline (ระดับความชัน) : 0-15% Auto Incline\n6 ระดับ การลดการแระแทก\nWeight Limit (น้ำหนักผู้ใช้สูงสุดที่แนะนำ) : 110 kg.', 'https://bucket.fitwhey.com/products/c720a9d416e6dd0df099b990a7b2a75f.webp', 8999.00, 18, 'Exercise equipment', '2024-10-19 02:17:19', '2024-10-19 02:17:19'),
 (16, 'YOGA MAT', 'น้ำหนักเบา ม้วนเก็บได้ เคลื่อนย้ายสะดวก\nผลิตจากยางธรรมชาติ 100% ขนาดใหญ่เป็นพิเศษ 183*61 ซม.\nเบาะมีความหนาแน่นสูง ป้องกันเหงื่อซึม ไม่ดูดซับเหงื่อ​\nผิวสัมผัสนุ่ม ดูดซับความชื้นและระบายอากาศได้ดี แห้งเร็ว ไม่สะสมเชื้อรา&แบคทีเรีย\nยืดหยุ่น ไม่ลื่น ยึดเกาะดี รองรับสรีระและแรงกระแทกได้ดีเยี่ยม\nสำหรับช่วยในการวางท่าที่เหมาะสม สำหรับมือใหม่และมืออาชีพ', 'https://bucket.fitwhey.com/ProductType/0c488a0029cf8c4bd896a98475f8a3b3.png', 240.00, 456, 'Exercise equipment', '2024-10-19 02:17:19', '2024-10-19 02:17:19'),
 (17, 'BAAMXERCORE SPIN BIKES', 'Mainframe: Steel heavy duty frame 100 x 40 x 1.3 oval tube\nFlywheel: 13.2 lbs (6kg) steel flywheel\nPost: Spray painting seat and handle post\nDrive System: Durable belt transmission \nHandlebar height: 89-96.5cm,\nSeat cushion height: 96-103cm,\nSeat cushion to handlebar: 75-85cm\nResistance & Brake System: Unlimited knob of tension adjustment with quick stop break system\nBearing: Best quality heavy duty bearing set\nTransport Wheels: Yes\nCrank: Two piece professional cranks\nSeat adjustments: Move back and forth,up and down.\nLCD mointor: shows distance,cal,time,speed\nSeat Pad: Professional pressure-relieving hollow seat pad\nMax User Weight: 264 lbs (120kg)\nProduct size: 109 x 50 x 123cm', 'https://bucket.fitwhey.com/ProductType/1308c0783d65676fdf7a496b4d0a4e90.webp', 7999.00, 37, 'Exercise equipment', '2024-10-19 02:17:19', '2024-10-19 02:17:19'),
@@ -251,10 +253,21 @@ CREATE TABLE `reviews` (
   `review_id` bigint UNSIGNED NOT NULL,
   `user_information_id` bigint UNSIGNED NOT NULL,
   `product_id` bigint UNSIGNED NOT NULL,
-  `comment` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `order_id` bigint UNSIGNED NOT NULL,
+  `rate` int NOT NULL,
+  `comment` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `reviews`
+--
+
+INSERT INTO `reviews` (`review_id`, `user_information_id`, `product_id`, `order_id`, `rate`, `comment`, `created_at`, `updated_at`) VALUES
+(5, 1, 1, 33, 4, 'กหฟกฟห', '2024-10-30 00:24:24', '2024-10-30 00:24:24'),
+(6, 1, 3, 34, 5, 'Good', '2024-10-30 00:25:48', '2024-10-30 00:25:48'),
+(11, 1, 14, 65, 5, 'Good', '2024-10-30 01:07:38', '2024-10-30 01:07:38');
 
 -- --------------------------------------------------------
 
@@ -276,9 +289,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('Ey6lp4CfXqVmOPmXIAv2YFNSna6jIdktnNpZQIqE', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiZ2xJa1I5OGJ1REJmSlFnd2RtZ2JVMzBPOWdHN1VRbHcyWUU3RU8zUiI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czoyOToiaHR0cDovLzEyNy4wLjAuMTo4MDAwL3Byb2ZpbGUiO31zOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozNzoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL3Byb2ZpbGUvYWRkcmVzcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjQ7fQ==', 1730226065),
-('OqinXu16I3LnjsPXVBMC4MhzjbLIgQeA2VRg1ljZ', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiYUhNQktUQmF4V1ZBUnpvSjdVUmNTTjFZZU10Q1hNa1VLU3VPd3oyRiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9wcm9maWxlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MDp7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1730225928),
-('z0p9viFiqblSourqLQYTx3uQxP6IVimFauZQQe9F', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiQ3djRmVnWXNQWlprbDZvUlZhR0RTT0cyMXh5aldaNTdaRXgyalRiMyI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjM3OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvcHJvZmlsZS9wZW5kaW5nIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mjt9', 1730225131);
+('MoNX1BXWjbQBLWrSdmLmV2KKU1F612g480XRb63n', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoib0dvWmdqUE1MUERuUEw1T0NPamlJZ0Uzc2p1dkxHVzBOWmZ2YmVHQiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9zdG9yZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjA6e31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1730275661);
 
 -- --------------------------------------------------------
 
@@ -410,7 +421,8 @@ ALTER TABLE `products`
 ALTER TABLE `reviews`
   ADD PRIMARY KEY (`review_id`),
   ADD KEY `reviews_user_information_id_foreign` (`user_information_id`),
-  ADD KEY `reviews_product_id_foreign` (`product_id`);
+  ADD KEY `reviews_product_id_foreign` (`product_id`),
+  ADD KEY `reviews_order_id_foreign` (`order_id`);
 
 --
 -- Indexes for table `sessions`
@@ -442,7 +454,7 @@ ALTER TABLE `users_information`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `cart_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `cart_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -460,13 +472,13 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `order_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -478,7 +490,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `review_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `review_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -514,6 +526,7 @@ ALTER TABLE `orders`
 -- Constraints for table `reviews`
 --
 ALTER TABLE `reviews`
+  ADD CONSTRAINT `reviews_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `reviews_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `reviews_user_information_id_foreign` FOREIGN KEY (`user_information_id`) REFERENCES `users_information` (`user_information_id`) ON DELETE CASCADE;
 
