@@ -3,11 +3,10 @@
 @section('content')
     <div class="w-full flex justify-center items-center">
         <div class="mt-[4.375rem] w-[80%] grid grid-cols-3 gap-6">
-            <div class="bg-white h-full  shadow-md p-10 rounded-xl aspect-square">
+            <div class="bg-white shadow-md p-10 rounded-xl aspect-square">
                 <img src="{{ $product->product_img }}" alt="{{ $product->product_name }}"
                     class="rounded-xl object-cover object-center h-full w-full">
             </div>
-
             <div class="bg-white shadow-md col-span-2 rounded-xl p-10 space-y-10">
                 <h1 class="text-3xl font-bold">{{ $product->product_name }}</h1>
                 <p class="text-md opacity-70">{{ $product->product_description }}</p>
@@ -45,22 +44,13 @@
                 <p class="text-gray-500">ไม่มีรีวิว</p>
             @else
                 @foreach ($product->reviews as $review)
-                    {{-- <div class="bg-white p-4 mb-2 rounded shadow">
-                        @if ($review->userInformation && $review->userInformation->user)
-                            <p><strong>ผู้ใช้:</strong> {{ $review->userInformation->user->name }}</p>
-                        @else
-                            <p><strong>ผู้ใช้:</strong> ไม่ระบุชื่อ</p>
-                        @endif
-                        <p><strong>คะแนน:</strong> {{ $review->rate }}</p>
-                        <p><strong>ความคิดเห็น:</strong> {{ $review->comment }}</p>
-                    </div> --}}
                     <div>
                         {{-- Name --}}
                         <div class="space-y-1 text-gray-700">
                             @if ($review->userInformation && $review->userInformation->user)
                                 <p>คุณ {{ $review->userInformation->user->name }}</p>
                             @else
-                                <p>>คุณ ไม่ระบุชื่อ</p>
+                                <p><strong>คุณ ไม่ระบุชื่อ</p>
                             @endif
                     
                             <p class="opacity-60">{{ $review->created_at }}</p>
