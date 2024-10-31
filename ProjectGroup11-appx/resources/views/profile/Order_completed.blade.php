@@ -74,7 +74,7 @@
                 <div class="px-6 mt-2">
                     @foreach($orders as $order)
                     @if($order->product && $order->status === 'completed')
-                                <div class="bg-white shadow-md rounded-lg mb-4 p-6">
+                                <div class="bg-white shadow-md rounded-lg mb-4 p-6 hover:bg-slate-300 hover:scale-105 duration-200">
                                     <div class="text-center flex items-center justify-end">
                                         <h1 class="bg-green-100 text-green-700 text-sm py-1 px-3 rounded-full w-max">{{ $order->status }}</>
                                     </div>

@@ -24,11 +24,25 @@
                                 max="{{ $product->product_quantity }}" value="1">
                         </div>
                     </div>
-
-                    <button type="submit"
-                        class="bottom-0 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mb-5">
-                        Add to Cart
-                    </button>
+                    <div class="flex flex-row gap-4">
+                        <button type="submit"
+                            class="bottom-0 bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mb-5 flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 576 512" class="mr-2 fill-current text-white">
+                                <path
+                                    d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
+                            </svg>
+                            เพิ่มไปที่ตะกร้า
+                        </button>
+                        <button class="bottom-0 w-[180px] h-[40px] bg-slate-500 hover:bg-slate-600 font-bold py-2 px-4 rounded text-white flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 448 512" class="mr-2 fill-current text-white">
+                                <path
+                                    d="M257.5 445.1c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L9.4 288c-12.5-12.5-12.5-32.8 0-45.3L212.2 39.5c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3L109.3 224H424c17.7 0 32 14.3 32 32s-14.3 32-32 32H109.3l148.2 157.1z" />
+                            </svg>
+                            <a href="{{ route('dashboard') }}" class="text-white">
+                                กลับไปหน้าร้านค้า
+                            </a>
+                        </button>
+                    </div>
                 </form>
             </div>
 

@@ -74,7 +74,7 @@
                 <div class="px-6 mt-2">
                         @foreach($orders as $order)
                             @if($order->product)
-                                <div class="bg-white shadow-md rounded-lg mb-4 p-6">
+                                <div class="bg-white shadow-md rounded-lg mb-4 p-6 hover:bg-slate-300 hover:scale-105 duration-200">
                                     <div class="text-center flex items-center justify-end">
                                         @if ($order->status == 'pending')
                                             <h1 class="bg-blue-100 text-blue-700 text-sm py-1 px-3 rounded-full w-max">{{ $order->status }}</>

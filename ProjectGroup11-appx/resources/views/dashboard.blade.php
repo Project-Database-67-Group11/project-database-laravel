@@ -3,7 +3,7 @@
 @section('content')
 <div class="w-full flex justify-center items-center">
     <!-- Main Content -->
-    <div class="mt-[4.375rem] w-[80%] mb-20">
+    <div class="mt-[4.375rem] w-[80%] mb-[70px]">
         <!-- Products Section -->
         <section class="bg-[#ffffff] p-5 rounded-lg shadow-xl space-y-8">
             <div class="flex justify-between items-end">
@@ -34,6 +34,9 @@
                             <option value="product_price,desc" {{ request('sort') == 'product_price,desc' ? 'selected' : '' }}>ราคา (สูง -> ต่ำ)</option>
                         </select>
                     </form>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
                 </div>
             </div>
 
@@ -42,7 +45,7 @@
                     <!-- Product Card -->
                     <a href="{{ route('product.show', ['id' => $product->product_id]) }}"
                         class="block transition-transform transform hover:scale-105">
-                        <div class="bg-gray-100 p-4 rounded-lg flex flex-col justify-between text-center h-full">
+                        <div class="bg-gray-100 p-4 rounded-lg flex flex-col justify-between text-center h-full duration-200 hover:bg-slate-300">
                             <div class="flex flex-col flex-grow">
                                 <img src="{{ $product->product_img }}" alt="{{ $product->product_name }}"
                                     class="h-40 w-full object-contain mx-auto bg-white rounded-lg">
@@ -59,7 +62,7 @@
         </section>
 
         <!-- Divider -->
-        <hr class="my-12 border-t-2 border-gray-400">
+        <!-- <hr class="my-12 border-t-2 border-gray-400"> -->
     </div>
 </div>
 @endsection
