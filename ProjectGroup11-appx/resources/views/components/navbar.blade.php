@@ -16,9 +16,9 @@
 </head>
 
 <body>
-    <div class="bg-gradient-to-r from-orange-500 to-orange-600 shadow-lg border  flex justify-center items-center font-[Kanit] h-24 py-2">
+    <div class="drop-shadow-lg bg-gradient-to-r from-blue-400/95 to-orange-500/95 flex justify-center items-center font-[Kanit] h-20 py-2 rounded-lg">
         {{-- logo --}}
-        <div class="w-[80%] flex justify-between h-full">
+        <div class="w-[82%] flex justify-between h-full">
             <div><a href="/store"><img src="{{ asset('img/logo.png') }}" alt="Logo" class="h-full"></a></div>
             <div class="flex items-center justify-center space-x-4 gap-6">
                 <!-- {{-- Store Button --}}

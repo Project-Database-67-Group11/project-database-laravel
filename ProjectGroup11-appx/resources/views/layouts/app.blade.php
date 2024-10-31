@@ -28,7 +28,8 @@
 </head>
 
 <body class="font-[Kanit] antialiased text-black">
-    <div class="min-h-screen bg-[#E3E7F1]">
+    <div class="min-h-screen bg-[#E3E7F1] flex flex-col">
+        <!-- Navigation -->
         @include('layouts.navigation')
 
         <!-- Page Heading -->
@@ -41,12 +42,11 @@
         @endisset
 
         <!-- Page Content -->
-        <main>
+        <main class="flex-grow">
             @yield('content')
         </main>
 
+        <!-- Footer -->
         @include('layouts.copyright')
     </div>
 </body>
-
-</html>

@@ -40,7 +40,7 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-4 gap-6">
+            <div class="grid grid-cols-5 gap-6">
                 @foreach ($products as $product)
                     <!-- Product Card -->
                     <a href="{{ route('product.show', ['id' => $product->product_id]) }}"

@@ -74,61 +74,63 @@
                 <div class="px-6 mt-2">
                         @foreach($orders as $order)
                             @if($order->product)
-                                <div class="bg-white shadow-md rounded-lg mb-4 p-6 hover:bg-slate-300 hover:scale-105 duration-200">
-                                    <div class="text-center flex items-center justify-end">
-                                        @if ($order->status == 'pending')
-                                            <h1 class="bg-blue-100 text-blue-700 text-sm py-1 px-3 rounded-full w-max">{{ $order->status }}</>
-                                        @elseif ($order->status == 'completed')
-                                            <h1 class="bg-green-100 text-green-700 text-sm py-1 px-3 rounded-full w-max">{{ $order->status }}</>
-                                        @elseif ($order->status == 'cancelled')
-                                            <h1 class="bg-red-100 text-red-700 text-sm py-1 px-3 rounded-full w-max">{{ $order->status }}</>
-                                        @endif
-                                    </div>
-                                    <div class="grid grid-cols-2 ">
-                                        <div class="flex flex-row gap-4">
-                                            <div class="flex flex-col items-center">
-                                                <div >
-                                                    <img src="{{ $order->product->product_img }}" alt="{{ $order->product->product_name }}" class="h-32 w-32 object-cover rounded-md">
+                                <a href="{{ route('profile.orders.seemore', ['allOrderId' => $order->all_order_id]) }}">
+                                    <div class="bg-white shadow-md rounded-lg mb-4 p-6 hover:bg-slate-300 hover:scale-105 duration-200" >
+                                        <div class="text-center flex items-center justify-end">
+                                            @if ($order->status == 'pending')
+                                                <h1 class="bg-blue-100 text-blue-700 text-sm py-1 px-3 rounded-full w-max">{{ $order->status }}</>
+                                            @elseif ($order->status == 'completed')
+                                                <h1 class="bg-green-100 text-green-700 text-sm py-1 px-3 rounded-full w-max">{{ $order->status }}</>
+                                            @elseif ($order->status == 'cancelled')
+                                                <h1 class="bg-red-100 text-red-700 text-sm py-1 px-3 rounded-full w-max">{{ $order->status }}</>
+                                            @endif
+                                        </div>
+                                        <div class="grid grid-cols-2 ">
+                                            <div class="flex flex-row gap-4">
+                                                <div class="flex flex-col items-center">
+                                                    <div >
+                                                        <img src="{{ $order->product->product_img }}" alt="{{ $order->product->product_name }}" class="h-32 w-32 object-cover rounded-md">
+                                                    </div>
+                                                </div>
+        
+                                                <div class="flex items-start justify-center mt-6">
+                                                    <h1 class="text-lg font-semibold text-black">{{ $order->product->product_name }}</h1>
                                                 </div>
                                             </div>
-    
-                                            <div class="flex items-start justify-center mt-6">
-                                                <h1 class="text-lg font-semibold text-black">{{ $order->product->product_name }}</h1>
-                                            </div>
-                                        </div>
-    
-                                        <div class="flex flex-col gap-2 items-end justify-end text-right">
-                                            <div class="flex flex-col gap-4">
-                                                <div class="mt-5">
-                                                    <h1 class="text-black font-semibold">{{ $order->date }}</h1>
-                                                </div>
-                                                <div >
-                                                    <h1 class="text-xl font-bold text-orange-500">฿ {{ number_format($order->product->product_price * $order->quantity, 2) }}</h1>
-                                                    <p class="text-sm text-gray-600">{{ $order->quantity }} รายการ</p>
-                                                </div>
-                                                <div>
-                                                    <p class="text-sm text-gray-600">ราคารวมค่าส่งและภาษี : ฿ {{ $order->total_price }}</p>
+        
+                                            <div class="flex flex-col gap-2 items-end justify-end text-right">
+                                                <div class="flex flex-col gap-4">
+                                                    <div class="mt-5">
+                                                        <h1 class="text-black font-semibold">{{ $order->date }}</h1>
+                                                    </div>
+                                                    <div >
+                                                        <h1 class="text-xl font-bold text-orange-500">฿ {{ number_format($order->product->product_price * $order->quantity, 2) }}</h1>
+                                                        <p class="text-sm text-gray-600">{{ $order->quantity }} รายการ</p>
+                                                    </div>
+                                                    <div>
+                                                        <p class="text-sm text-gray-600">ราคารวมค่าส่งและภาษี : ฿ {{ $order->total_price }}</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="flex items-center justify-center">
-                                        <a href="{{ route('profile.orders.seemore', ['allOrderId' => $order->all_order_id]) }}" class="hover:text-orange-500 hover:font-bold">
-                                            ดูเพิ่มเติม
-                                        </a>
-                                    </div>
-                                    
-                                    {{-- @if($order->status === 'pending')
-                                        <div class="flex items-end justify-end mt-5 gap-3">
-                                            <button class="bg-green-500 text-black py-2 px-4 rounded-lg hover:bg-green-600 transition hover:text-white">
-                                                ชำระแล้ว
-                                            </button>
-                                            <button class="bg-blue-500 text-black py-2 px-4 rounded-lg hover:bg-blue-600 transition hover:text-white">
-                                                ยกเลิก
-                                            </button>
+                                        <div class="flex items-center justify-center">
+                                            <a href="{{ route('profile.orders.seemore', ['allOrderId' => $order->all_order_id]) }}" class="hover:text-orange-500 hover:font-bold">
+                                                ดูเพิ่มเติม
+                                            </a>
                                         </div>
-                                    @endif --}}
-                                </div>
+                                        
+                                        {{-- @if($order->status === 'pending')
+                                            <div class="flex items-end justify-end mt-5 gap-3">
+                                                <button class="bg-green-500 text-black py-2 px-4 rounded-lg hover:bg-green-600 transition hover:text-white">
+                                                    ชำระแล้ว
+                                                </button>
+                                                <button class="bg-blue-500 text-black py-2 px-4 rounded-lg hover:bg-blue-600 transition hover:text-white">
+                                                    ยกเลิก
+                                                </button>
+                                            </div>
+                                        @endif --}}
+                                    </div>
+                                </a>
                             @else
                                 <p class="text-lg">ไม่พบข้อมูลสินค้า</p>
                             @endif
