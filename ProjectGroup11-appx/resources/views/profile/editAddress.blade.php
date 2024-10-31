@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="w-full flex justify-center items-center">
-    <div class="mt-[4.375rem] w-[80%] mb-5 grid grid-cols-4 gap-6">
+    <div class="mt-[4.375rem] w-[80%] mb-[4.375rem] grid grid-cols-4 gap-6">
         <div>
             <div class="bg-white shadow-md rounded-xl p-10 flex flex-row gap-4">
                 <div class="flex items-center justify-center">
