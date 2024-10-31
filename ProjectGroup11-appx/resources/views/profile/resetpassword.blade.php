@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="bg-white shadow-md rounded-xl">
-                    <a href="" class="w-full px-10 py-6 flex flex-row ">
+                    <div href="" class="w-full px-10 py-6 flex flex-row ">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"
                             viewBox="0 0 384 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                             <path
@@ -46,7 +46,7 @@
                         </svg>
                         <h1 class="pl-4 ">การซื้อของฉัน</h1>
 
-                    </a>
+                    </div>
                 </div>
                 <div class="space-y-6 ml-10 my-4 flex flex-col gap-[1px]">
                     <a href="{{ route('profile.Order_index') }}" class="">
