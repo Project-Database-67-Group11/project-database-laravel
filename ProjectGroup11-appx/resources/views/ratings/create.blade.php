@@ -134,8 +134,8 @@
                             <textarea id="comment" name="comment" class="border rounded-lg p-2 w-full resize-none" rows="4"></textarea>
                         </div>
                         <div class="flex justify-between">
-                            <a href="{{ url()->previous() }}" class="bg-red-500 text-white px-4 py-2 rounded-lg">กลับ</a>
-                            <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-lg">ส่งความคิดเห็น</button>
+                            <a href="{{ url()->previous() }}" class="bg-red-500 text-white px-4 py-2 rounded-lg transition duration-200 hover:bg-red-600">กลับ</a>
+                            <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-lg transition duration-200 hover:bg-green-600">ส่งความคิดเห็น</button>
                         </div>
                         
                     </form>

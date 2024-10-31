@@ -77,7 +77,7 @@
                                 @if ($order->product && $order->status === 'pending')
                                     <a href="{{ route('profile.orders.seemore', ['allOrderId' => $order->all_order_id]) }}">
                                         <div
-                                            class="bg-white shadow-md rounded-lg mb-4 p-6 hover:bg-slate-300 hover:scale-105 duration-200">
+                                            class="bg-white shadow-md rounded-lg mb-4 p-6 hover:bg-gray-200 hover:scale-105 transition duration-200">
                                             <div class="text-center flex items-center justify-end">
                                                 <h1 class="bg-blue-100 text-blue-700 text-sm py-1 px-3 rounded-full w-max">
                                                     {{ $order->status }}</>

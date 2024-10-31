@@ -45,7 +45,7 @@
                     <!-- Product Card -->
                     <a href="{{ route('product.show', ['id' => $product->product_id]) }}"
                         class="block transition-transform transform hover:scale-105">
-                        <div class="bg-gray-100 p-4 rounded-lg flex flex-col justify-between text-center h-full duration-200 hover:bg-slate-300">
+                        <div class="bg-gray-100 p-4 rounded-lg flex flex-col justify-between text-center h-full duration-200 hover:bg-gray-200">
                             <div class="flex flex-col flex-grow">
                                 <img src="{{ $product->product_img }}" alt="{{ $product->product_name }}"
                                     class="h-40 w-full object-contain mx-auto bg-white rounded-lg">

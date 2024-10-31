@@ -26,7 +26,7 @@
                     </div>
                     <div class="flex flex-row gap-4">
                         <button type="submit"
-                            class=" bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mb-5 flex items-center">
+                            class=" bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mb-5 flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 576 512"
                                 class="mr-2 fill-current text-white">
                                 <path

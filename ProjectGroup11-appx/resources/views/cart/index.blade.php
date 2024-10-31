@@ -101,7 +101,7 @@
                         <h1 class="text-xl font-semibold mb-2">You May Interest</h1>
                         <div class="mt-10">
                             @foreach ($randomProducts as $product)
-                                <div class="flex gap-4 items-start mb-6 hover:bg-slate-300 hover:scale-105 rounded-md">
+                                <div class="flex gap-4 items-start mb-6 hover:bg-gray-200 hover:scale-105 rounded-md transition duration-200">
                                     <!-- ลิงก์ไปยังหน้ารายละเอียดสินค้า -->
                                     <a href="{{ url('product', $product->product_id) }}" class="flex-shrink-0 self-center">
                                         <img src="{{ $product->product_img }}" alt="{{ $product->product_name }}"
