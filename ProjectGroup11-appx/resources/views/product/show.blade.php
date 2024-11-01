@@ -16,24 +16,40 @@
                     @csrf
                     <input type="hidden" name="product_id" value="{{ $product->product_id }}">
                     <div>
-                        <p class="opacity-70 text-sm">สินค้าเหลือ: {{ $product->product_quantity }} จำนวน</p>
-                        <div class="flex items-center">
-                            <label for="quantity" class="block text-lg font-medium mr-5">จำนวน:</label>
-                            <input type="number" id="quantity" name="quantity"
-                                class="w-20 mt-2 border border-gray-300 rounded-md p-2" min="1"
-                                max="{{ $product->product_quantity }}" value="1">
-                        </div>
+                        @if ($product->product_quantity > 0)
+                            <p class="opacity-70 text-sm">สินค้าเหลือ: {{ $product->product_quantity }} จำนวน</p>
+                            <div class="flex items-center">
+                                <label for="quantity" class="block text-lg font-medium mr-5">จำนวน:</label>
+                                <input type="number" id="quantity" name="quantity"
+                                    class="w-20 mt-2 border border-gray-300 rounded-md p-2" min="1"
+                                    max="{{ $product->product_quantity }}" value="1">
+                            </div>
+                        @else
+                            <p class="text-red-500 text-lg font-bold">สินค้าหมด</p>
+                        @endif
                     </div>
                     <div class="flex flex-row gap-4">
-                        <button type="submit"
-                            class=" bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mb-5 flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 576 512"
-                                class="mr-2 fill-current text-white">
-                                <path
-                                    d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
-                            </svg>
-                            เพิ่มไปที่ตะกร้า
-                        </button>
+                        @if ($product->product_quantity > 0)
+                            <button type="submit"
+                                class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mb-5 flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 576 512"
+                                    class="mr-2 fill-current text-white">
+                                    <path
+                                        d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
+                                </svg>
+                                เพิ่มไปที่ตะกร้า
+                            </button>
+                        @else
+                            <button type="button" disabled
+                                class="bg-gray-400 text-white font-bold py-2 px-4 rounded mb-5 flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 576 512"
+                                    class="mr-2 fill-current text-white">
+                                    <path
+                                        d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
+                                </svg>
+                                สินค้าหมด
+                            </button>
+                        @endif
                         <a href="{{ route('dashboard') }}"
                             class="bg-slate-500 hover:bg-slate-600 text-white font-bold py-2 px-4 rounded mb-5 flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 448 512"
