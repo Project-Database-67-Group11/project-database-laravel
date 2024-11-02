@@ -38,39 +38,50 @@ class CartController extends Controller
 
 
     public function add(Request $request)
-    {
-        $productId = $request->input('product_id');
-        $quantity = $request->input('quantity');
+{
+    $productId = $request->input('product_id');
+    $quantity = $request->input('quantity');
 
-        $product = Product::where('product_id', $productId)->first();
+    $product = Product::where('product_id', $productId)->first();
 
-        if (!$product) {
-            return redirect()->back()->with('error', 'Product not found.');
-        }
-
-        $userInformation = UserInformation::where('user_id', auth()->id())->first();
-
-        if (!$userInformation) {
-            return redirect()->back()->with('error', 'User information not found.');
-        }
-
-        $existingCartItem = Cart::where('product_id', $productId)
-            ->where('user_information_id', $userInformation->user_information_id)
-            ->first();
-
-        if ($existingCartItem) {
-            $existingCartItem->quantity += $quantity;
-            $existingCartItem->save();
-        } else {
-            Cart::create([
-                'product_id' => $product->product_id,
-                'user_information_id' => $userInformation->user_information_id,
-                'quantity' => $quantity,
-            ]);
-        }
-
-        return redirect()->back()->with('success', 'Product added to cart successfully!');
+    if (!$product) {
+        return redirect()->back()->with('error', 'Product not found.');
     }
+
+    $userInformation = UserInformation::where('user_id', auth()->id())->first();
+
+    if (!$userInformation) {
+        return redirect()->back()->with('error', 'User information not found.');
+    }
+
+    $existingCartItem = Cart::where('product_id', $productId)
+        ->where('user_information_id', $userInformation->user_information_id)
+        ->first();
+
+    if ($existingCartItem) {
+        $newQuantity = $existingCartItem->quantity + $quantity;
+
+        if ($newQuantity > $product->product_quantity) {
+            $existingCartItem->quantity = $product->product_quantity; // set to max available quantity
+        } else {
+            $existingCartItem->quantity = $newQuantity;
+        }
+        $existingCartItem->save();
+    } else {
+        if ($quantity > $product->product_quantity) {
+            $quantity = $product->product_quantity;
+        }
+
+        Cart::create([
+            'product_id' => $product->product_id,
+            'user_information_id' => $userInformation->user_information_id,
+            'quantity' => $quantity,
+        ]);
+    }
+
+    return redirect()->back()->with('success', 'Product added to cart successfully!');
+}
+
 
     public function removed(Request $request)
     {

@@ -86,9 +86,8 @@
                         <p class="mr-4">{{ $userInformation->first_name ?? 'N/A' }}
                             {{ $userInformation->last_name ?? 'N/A' }}
                         </p>
-                        <p>{{"|"}}</p>
                         <p>
-                            {{ $userInformation->phone_number ? ' (+66) ' . substr($userInformation->phone_number, 1, 2) . ' ' . substr($userInformation->phone_number, 3, 3) . ' ' . substr($userInformation->phone_number, 6, 4) : 'N/A' }}
+                            {{ $userInformation->phone_number ? '| (+66) ' . substr($userInformation->phone_number, 0, 3) . '-' . substr($userInformation->phone_number, 3, 3) . '-' . substr($userInformation->phone_number, 6, 4) : 'N/A' }}
                         </p>
                     </div>
 

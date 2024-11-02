@@ -24,6 +24,10 @@
         html::-webkit-scrollbar {
             display: none;
         }
+
+        * {
+            user-select: none;
+        }
     </style>
 </head>
 

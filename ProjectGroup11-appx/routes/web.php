@@ -78,15 +78,13 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::fallback(function () {
-    return "<h1>wwwww</h1>";
+    return view('welcome');
 });
 
-Route::get('/namo', function () {
-    return view('namo');
-});
+
 
 // Add Product
-Route::get('/add-product', [ProductController::class, 'addProduct']);
+// Route::get('/add-product', [ProductController::class, 'addProduct']);
 
 // for Route Orders
 // Route::get('/orders', [OrderController::class, 'index']);

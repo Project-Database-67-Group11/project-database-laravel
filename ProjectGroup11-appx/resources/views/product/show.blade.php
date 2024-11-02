@@ -117,5 +117,33 @@
             @endif
         </div>
     </div>
+    <script>
+        function showAlert() {
+            // ดึงชื่อสินค้า
+            const productName = "{{ $product->product_name }}";
+            // ดึงจำนวนที่ผู้ใช้เลือก
+            const quantity = document.getElementById('quantity').value;
+            // แสดง alert
+            alert("เพิ่มสินค้า: " + productName + " จำนวน: " + quantity);
+            // คืนค่า true เพื่อให้ฟอร์มถูกส่ง
+            return true;
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            let quantityInput = document.getElementById('quantity');
+            let maxQuantity = parseInt(quantityInput.max);
+            quantityInput.addEventListener('input', function() {
+                let value = parseInt(this.value);
+                if (value > maxQuantity) {
+                    this.value = maxQuantity;
+                }
+                if (value < 1 || isNaN(value)) {
+                    this.value = 1;
+                }
+            });
+            quantityInput.addEventListener('paste', function(event) {
+                event.preventDefault();
+            });
+        });
+    </script>
 
 @endsection

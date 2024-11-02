@@ -101,10 +101,20 @@
 
                     <div>
                         <label for="phone_number" class="block text-sm font-medium text-gray-700">เบอร์โทรศัพท์</label>
-                        <input type="tel" name="phone_number" id="phone_number"
-                            value="{{ $userInformation->phone_number ?? '' }}" placeholder="กรุณากรอกเบอร์โทรศัพท์"
-                            class="mt-1 block w-full rounded-xl">
+                        <input 
+                            type="tel" 
+                            name="phone_number" 
+                            id="phone_number"
+                            value="{{ $userInformation->phone_number ?? '' }}" 
+                            placeholder="กรุณากรอกเบอร์โทรศัพท์" 
+                            pattern="\d{10}" 
+                            maxlength="10" 
+                            minlength="10"
+                            title="กรุณากรอกเบอร์โทรศัพท์ 10 ตัวเลข"
+                            class="mt-1 block w-full rounded-xl"
+                            required>
                     </div>
+                    
 
                     <div class="col-span-2 flex justify-end">
                         <button type="submit" class="px-4 py-2 bg-orange-500 hover:bg-orange-700 text-white rounded">บันทึก</button>
